@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/leonardo/CLionProjects/DataStructuresInCpp/List/list.h
+malloc.h
+-
+
+/home/leonardo/CLionProjects/DataStructuresInCpp/main.cpp
+iostream
+-
+List/list.h
+/home/leonardo/CLionProjects/DataStructuresInCpp/List/list.h
+
