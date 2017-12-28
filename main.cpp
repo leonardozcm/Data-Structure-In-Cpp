@@ -1,17 +1,12 @@
 #include <iostream>
-#include "List/list.h"
+#include "Stack/stack.h"
+
 using namespace std;
 
 int main() {
-    List< int > list;
-    cout<< list.Length()<<endl;
-    list.Insert(987,0);
-    list.Insert(866,1);
-    list.add(45);
-    list.Insert(67,3);
-    cout<< list.Length()<<endl;
-    cout << list.get(0) << endl;
-    cout << list.get(1) << endl;
-    cout << list.get(2)<<endl;
+    Stack<int> stack;
+    stack.Push(36);
+    stack.Push(87);
+    cout<<stack.Top()<<endl;
     return 0;
 }

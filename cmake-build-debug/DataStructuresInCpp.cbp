@@ -87,6 +87,9 @@
 		<Unit filename="/home/leonardo/CLionProjects/DataStructuresInCpp/List/list.h">
 			<Option target="DataStructuresInCpp"/>
 		</Unit>
+		<Unit filename="/home/leonardo/CLionProjects/DataStructuresInCpp/Stack/stack.h">
+			<Option target="DataStructuresInCpp"/>
+		</Unit>
 		<Unit filename="/home/leonardo/CLionProjects/DataStructuresInCpp/main.cpp">
 			<Option target="DataStructuresInCpp"/>
 		</Unit>

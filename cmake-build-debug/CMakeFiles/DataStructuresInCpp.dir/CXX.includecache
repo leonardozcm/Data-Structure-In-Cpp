@@ -6,13 +6,11 @@
 
 #IncludeRegexTransform: 
 
-/home/leonardo/CLionProjects/DataStructuresInCpp/List/list.h
-malloc.h
--
+/home/leonardo/CLionProjects/DataStructuresInCpp/Stack/stack.h
 
 /home/leonardo/CLionProjects/DataStructuresInCpp/main.cpp
 iostream
 -
-List/list.h
-/home/leonardo/CLionProjects/DataStructuresInCpp/List/list.h
+Stack/stack.h
+/home/leonardo/CLionProjects/DataStructuresInCpp/Stack/stack.h
 

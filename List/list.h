@@ -5,13 +5,10 @@
 #ifndef DATASTRUCTURESINCPP_LIST_H
 #define DATASTRUCTURESINCPP_LIST_H
 
-
 #include <malloc.h>
 
 template<typename T>
 class List {
-
-
 public:
     class Node {
     public:
@@ -27,7 +24,7 @@ public:
     typedef Node *PtrToNode;
     typedef PtrToNode Position;
 
-    List(){
+    List() {
         head = nullptr;
     };
 
@@ -55,7 +52,7 @@ public:
 
     void add(T t);
 
-    ~List(){
+    ~List() {
         Node *temp;
         for (int i = 0; i < length; ++i) {
             temp = head;
@@ -70,6 +67,7 @@ private:
     Node *head;
     int length = 0;
 };
+
 template<typename T>
 bool List<T>::isEmpty() {
     return head == nullptr;
@@ -77,26 +75,26 @@ bool List<T>::isEmpty() {
 
 template<typename T>
 bool List<T>::isLast(typename List<T>::Position position) {
-    return position->next== nullptr;
+    return position->next == nullptr;
 }
 
 template<typename T>
 void List<T>::InsertHead(T t) {
-    Node *mhead=new Node(t);
-    mhead->next=head;
-    head=mhead;
+    Node *mhead = new Node(t);
+    mhead->next = head;
+    head = mhead;
 }
 
 template<typename T>
 void List<T>::Insert(T t, int pos) {
-    if(pos <= 0){
+    if (pos <= 0) {
         InsertHead(t);
-    } else{
-        typename List<T>::Position previous = FindByPos(pos-1);
-        typename List<T>::Position pnext = previous -> next;
-        Node *mpNode=new Node(t);
-        previous ->next=mpNode;
-        mpNode->next=pnext;
+    } else {
+        typename List<T>::Position previous = FindByPos(pos - 1);
+        typename List<T>::Position pnext = previous->next;
+        Node *mpNode = new Node(t);
+        previous->next = mpNode;
+        mpNode->next = pnext;
     }
     length++;
 }
@@ -113,20 +111,20 @@ typename List<T>::Position List<T>::FindPervious(T myt) {
 }
 
 template<typename T>
-void List<T>::removeByEle(T t){
-     List<T>::Position p,TmpCell;
+void List<T>::removeByEle(T t) {
+    List<T>::Position p, TmpCell;
 
 
-    if(head -> t==t){
+    if (head->t == t) {
         typename List<T>::Position Tmpcell = head;
         head = head->next;
         free(Tmpcell);
-    } else{
-        p =FindPervious(t);
+    } else {
+        p = FindPervious(t);
 
-        if(!isLast(p)){
+        if (!isLast(p)) {
             TmpCell = p->next;
-            p->next=TmpCell->next;
+            p->next = TmpCell->next;
             free(TmpCell);
             length--;
         }
@@ -136,20 +134,20 @@ void List<T>::removeByEle(T t){
 
 template<typename T>
 void List<T>::removeByPos(int pos) {
-    if(pos < 0){
+    if (pos < 0) {
         printf("Error: position must be positive!");
-    }else if(pos == 0){
+    } else if (pos == 0) {
         typename List<T>::Position Tmpcell = head;
         head = head->next;
         free(Tmpcell);
         length--;
-    } else if(pos<length-1){
-        typename List<T>::Position mprevious = FindByPos(pos-1);
+    } else if (pos < length - 1) {
+        typename List<T>::Position mprevious = FindByPos(pos - 1);
         typename List<T>::Position TmpCell = mprevious->next;
         mprevious->next = TmpCell->next;
         free(TmpCell);
         length--;
-    } else{
+    } else {
         printf("Error: Remove item out of bounds!");
     }
 
@@ -185,13 +183,13 @@ int List<T>::FindByEle(T t) {
 template<typename T>
 typename List<T>::Position List<T>::FindByPos(int pos) {
     Position position = head;
-    int i=0;
+    int i = 0;
 
-    if(pos < 0){
+    if (pos < 0) {
         return nullptr;
     }
 
-    while (position->next!= nullptr && i++!=pos){
+    while (position->next != nullptr && i++ != pos) {
         position = position->next;
     }
     return position;
@@ -199,7 +197,7 @@ typename List<T>::Position List<T>::FindByPos(int pos) {
 
 template<typename T>
 void List<T>::add(T t) {
-    Insert(t,length);
+    Insert(t, length);
 }
 
 
