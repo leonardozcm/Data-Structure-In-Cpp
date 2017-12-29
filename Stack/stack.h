@@ -83,7 +83,7 @@ void Stack<T>::Push(T myt) {
 template<typename T>
 T Stack<T>::Top() {
     if (isEmpty()) {
-        return 0;
+        return NULL;
     } else {
         return top->t;
     }
