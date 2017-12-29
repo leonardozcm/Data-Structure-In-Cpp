@@ -6,6 +6,8 @@
 
 #IncludeRegexTransform: 
 
+/home/leonardo/CLionProjects/DataStructuresInCpp/Queue/queue.h
+
 /home/leonardo/CLionProjects/DataStructuresInCpp/Stack/stack.h
 
 /home/leonardo/CLionProjects/DataStructuresInCpp/main.cpp
@@ -13,4 +15,6 @@ iostream
 -
 Stack/stack.h
 /home/leonardo/CLionProjects/DataStructuresInCpp/Stack/stack.h
+Queue/queue.h
+/home/leonardo/CLionProjects/DataStructuresInCpp/Queue/queue.h
 
