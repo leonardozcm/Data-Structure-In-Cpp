@@ -5,11 +5,18 @@
 #ifndef DATASTRUCTURESINCPP_LIST_H
 #define DATASTRUCTURESINCPP_LIST_H
 
-#include <malloc.h>
+#include <iostream>
+
+using namespace std;
 
 template<typename T>
 class List {
 public:
+    const string OutOfBoundary = "Error: Index Out of Boundary";
+    const string NoNext = "Error: There is no next elements to exchange";
+    const string PositivePosition = "Error: position must be positive!";
+    const string RemoveIllegal = "Error: Remove item out of bounds!";
+
     class Node {
     public:
         T t;
@@ -51,6 +58,14 @@ public:
     Position FindByPos(int pos);
 
     void add(T t);
+
+    void Print();
+
+    void PrintLots(List<int> list);
+
+    void swapWithNext(int frontOne);
+
+    void Eroor(string msg);
 
     ~List() {
         Node *temp;
@@ -135,7 +150,7 @@ void List<T>::removeByEle(T t) {
 template<typename T>
 void List<T>::removeByPos(int pos) {
     if (pos < 0) {
-        printf("Error: position must be positive!");
+        Eroor(PositivePosition);
     } else if (pos == 0) {
         typename List<T>::Position Tmpcell = head;
         head = head->next;
@@ -148,10 +163,8 @@ void List<T>::removeByPos(int pos) {
         free(TmpCell);
         length--;
     } else {
-        printf("Error: Remove item out of bounds!");
+        Eroor(RemoveIllegal);
     }
-
-
 }
 
 template<typename T>
@@ -198,6 +211,69 @@ typename List<T>::Position List<T>::FindByPos(int pos) {
 template<typename T>
 void List<T>::add(T t) {
     Insert(t, length);
+}
+
+template<typename T>
+void List<T>::Print() {
+    printf("[");
+    PtrToNode iterator = head;
+    while (iterator != nullptr) {
+        if (iterator->next == nullptr) {
+            cout << iterator->t;
+        } else {
+            cout << iterator->t << ",";
+        }
+        iterator = iterator->next;
+    }
+    printf("]\n");
+}
+
+template<typename T>
+void List<T>::PrintLots(List<int> list) {
+    /*
+    PtrToNode iterator = list.head;
+    printf("[");
+    while (iterator != nullptr) {
+        if (iterator->next == nullptr) {
+            cout<<get(iterator->t);
+        } else {
+            cout<<get(iterator->t)<<",";
+        }
+        iterator = iterator->next;
+    }
+    printf("]\n");
+*/
+    printf("[");
+    for (int i = 0; i < list.Length() - 1; ++i) {
+        cout << get(list.get(i)) << ",";
+    }
+    cout << get(list.get(list.Length() - 1)) << "]" << endl;
+}
+
+template<typename T>
+void List<T>::swapWithNext(int frontOne) {
+    if (frontOne < 0 || frontOne >= length - 1) {
+        Eroor(OutOfBoundary);
+    } else if (frontOne == 0) {
+        PtrToNode tmp = head->next;
+        head->next = tmp->next;
+        head = tmp;
+    } else {
+        PtrToNode start = FindByPos(frontOne - 1);
+        PtrToNode front = start->next;
+        PtrToNode behind = front->next;
+
+        start->next = behind;
+        front->next = behind->next;
+        behind->next = front;
+    }
+
+
+}
+
+template<typename T>
+void List<T>::Eroor(const string msg) {
+    cout << msg << endl;
 }
 
 

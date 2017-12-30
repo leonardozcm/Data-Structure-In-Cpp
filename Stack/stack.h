@@ -26,9 +26,7 @@ public:
     virtual ~Stack();
 
     bool isEmpty();
-
-    // Stack CreateStack();
-    //void DisposeStack();
+;
     void MakeEmpty();
 
     void Push(T t);

@@ -71,12 +71,6 @@ void Queue<T>::enqueue(T t) {
         head = rear = ptrnode;
     }
     length++;
-    /*ptrnode->next=head;
-    head = ptrnode;
-    length++;
-    if(length ==1){
-        rear = ptrnode;
-    }*/
 }
 
 template<typename T>

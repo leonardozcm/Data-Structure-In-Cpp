@@ -1,19 +1,20 @@
 #include <iostream>
 #include "Stack/stack.h"
 #include "Queue/queue.h"
+#include "List/list.h"
 
 using namespace std;
 
 bool isStringLegal(string str);
 
 int main() {
-   Queue<int> queue;
-    queue.enqueue(56);
-    queue.enqueue(89);
-    queue.enqueue(78);
-    queue.dequeue();
-    cout<<queue.getHead()<<endl;
-    cout<<queue.getRear()<<endl;
+    List<char> list;
+    list.add('Z');
+    list.add('h');
+    list.add('a');
+    list.add('o');
+    list.swapWithNext(1);
+    list.Print();
     return 0;
 }
 
