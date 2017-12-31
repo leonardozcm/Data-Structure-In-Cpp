@@ -8,13 +8,7 @@ using namespace std;
 bool isStringLegal(string str);
 
 int main() {
-    List<char> list;
-    list.add('Z');
-    list.add('h');
-    list.add('a');
-    list.add('o');
-    list.swapWithNext(1);
-    list.Print();
+
     return 0;
 }
 
