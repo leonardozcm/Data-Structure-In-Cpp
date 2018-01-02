@@ -6,6 +6,10 @@
 
 #IncludeRegexTransform: 
 
+/home/leonardo/CLionProjects/DataStructuresInCpp/List/doublelinklist.h
+iostream
+-
+
 /home/leonardo/CLionProjects/DataStructuresInCpp/List/list.h
 iostream
 -
@@ -23,4 +27,6 @@ Queue/queue.h
 /home/leonardo/CLionProjects/DataStructuresInCpp/Queue/queue.h
 List/list.h
 /home/leonardo/CLionProjects/DataStructuresInCpp/List/list.h
+List/doublelinklist.h
+/home/leonardo/CLionProjects/DataStructuresInCpp/List/doublelinklist.h
 

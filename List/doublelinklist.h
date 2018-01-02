@@ -45,17 +45,11 @@ public:
 
     void Insert(T t, int pos);
 
-    void removeByEle(T t);
-
     void removeByPos(int pos);
-
-    Position FindPervious(T t);
 
     T get(int pos);
 
     int Length();
-
-    int FindByEle(T t);
 
     Position FindByPos(int pos);
 
@@ -108,20 +102,112 @@ void DoubleLinkList<T>::Insert(T t, int pos) {
         InsertHead(t);
     } else if (pos > length) {
         Eroor(OutOfBoundary);
-    } else{
-        PtrToNode ptrToNode=FindByPos(pos-1);
-        auto *tmp =new Node(t);
-        tmp->previous=ptrToNode;
-        tmp->next=ptrToNode->next;
-        ptrToNode->next->previous=tmp;
-        ptrToNode->next=tmp;
+    } else {
+        PtrToNode ptrToNode = FindByPos(pos - 1);
+        auto *tmp = new Node(t);
+        tmp->previous = ptrToNode;
+        tmp->next = ptrToNode->next;
+        if(ptrToNode->next!= nullptr){
+            ptrToNode->next->previous = tmp;
+        }
+        ptrToNode->next = tmp;
+        length++;
     }
 }
 
 template<typename T>
-void DoubleLinkList<T>::removeByEle(T t) {
+void DoubleLinkList<T>::removeByPos(int pos) {
+    if (pos < 0) {
+        Eroor(PositivePosition);
+    } else if (pos == 0) {
+        PtrToNode tmp = head->next;
+        tmp->previous = nullptr;
+        delete head;
+        head = tmp;
+        length--;
+    } else {
+        PtrToNode tmp = FindByPos(pos);
+        tmp->previous->next = tmp->next;
+        tmp->next->previous = tmp->previous;
+        delete tmp;
+        length--;
+    }
+}
 
+template<typename T>
+T DoubleLinkList<T>::get(int pos) {
+    return FindByPos(pos)->t;
+}
 
+template<typename T>
+int DoubleLinkList<T>::Length() {
+    return length;
+}
+
+template<typename T>
+typename DoubleLinkList<T>::Position DoubleLinkList<T>::FindByPos(int pos) {
+    PtrToNode tmp = nullptr;
+    if (pos < 0) {
+        Eroor(PositivePosition);
+    } else {
+        tmp = head;
+        for (int i = 0; i < pos; ++i) {
+            tmp = tmp->next;
+        }
+        return tmp;
+    }
+    return nullptr;
+}
+
+template<typename T>
+void DoubleLinkList<T>::add(T t) {
+    Insert(t, length);
+}
+
+template<typename T>
+void DoubleLinkList<T>::Print() {
+    printf("[");
+    PtrToNode iterator = head;
+    while (iterator != nullptr) {
+        if (iterator->next == nullptr) {
+            cout << iterator->t;
+        } else {
+            cout << iterator->t << ",";
+        }
+        iterator = iterator->next;
+    }
+    printf("]\n");
+}
+
+template<typename T>
+void DoubleLinkList<T>::swapWithNext(int frontOne) {
+    if (frontOne < 0 || frontOne >= length - 1) {
+        Eroor(OutOfBoundary);
+    } else if (frontOne == 0) {
+        PtrToNode tmp = head->next;
+        head->next = tmp->next;
+        head->previous = head;
+        tmp->next = head;
+        tmp->previous = nullptr;
+        head = tmp;
+    } else {
+        PtrToNode start = FindByPos(frontOne - 1);
+        PtrToNode front = start->next;
+        PtrToNode behind = front->next;
+
+        start->next = behind;
+        behind->next->previous = front;
+
+        front->next = behind->next;
+        front->previous = behind;
+        behind->previous = start;
+        behind->next = front;
+    }
+}
+
+template<typename T>
+void DoubleLinkList<T>::Eroor(string msg) {
+    cout << msg << endl;
 }
 
 

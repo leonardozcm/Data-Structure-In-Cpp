@@ -2,12 +2,19 @@
 #include "Stack/stack.h"
 #include "Queue/queue.h"
 #include "List/list.h"
+#include "List/doublelinklist.h"
 
 using namespace std;
 
 bool isStringLegal(string str);
 
 int main() {
+    DoubleLinkList<int> list;
+    list.add(0);
+    list.add(2);
+    list.add(3);
+    list.swapWithNext(0);
+    list.Print();
 
     return 0;
 }
