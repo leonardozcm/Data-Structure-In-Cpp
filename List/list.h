@@ -67,8 +67,9 @@ public:
 
     void Eroor(string msg);
 
+    //todo 重写 有重复释放内存到问题。
     ~List() {
-        Node *temp;
+        PtrToNode temp = head;
         for (int i = 0; i < length; ++i) {
             temp = head;
             head = head->next;
