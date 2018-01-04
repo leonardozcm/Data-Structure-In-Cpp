@@ -67,15 +67,7 @@ public:
 
     void Eroor(string msg);
 
-    //todo 重写 有重复释放内存到问题。
-    ~List() {
-        PtrToNode temp = head;
-        for (int i = 0; i < length; ++i) {
-            temp = head;
-            head = head->next;
-            delete temp;
-        }
-    };
+    void Clear();
 
 private:
 
@@ -275,6 +267,17 @@ void List<T>::swapWithNext(int frontOne) {
 template<typename T>
 void List<T>::Eroor(const string msg) {
     cout << msg << endl;
+}
+
+template<typename T>
+void List<T>::Clear() {
+    Node *temp;
+    while (head != nullptr) {
+        temp = head;
+        head = head->next;
+        delete temp;
+    }
+    length = 0;
 }
 
 

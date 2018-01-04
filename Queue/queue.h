@@ -5,47 +5,39 @@
 #ifndef DATASTRUCTURESINCPP_QUEUE_H
 #define DATASTRUCTURESINCPP_QUEUE_H
 
-template <typename T>
-class Queue{
+template<typename T>
+class Queue {
 public:
-    class Node{
+    class Node {
     public:
         T t;
         Node *next;
 
-        Node(T myt){
-            t=myt;
-            next= nullptr;
+        Node(T myt) {
+            t = myt;
+            next = nullptr;
         }
     };
 
     typedef Node *PtrToNode;
 
-    Queue(){
+    Queue() {
         head = rear = nullptr;
         length = 0;
     }
 
-    ~Queue(){
-        Node *temp;
-        while (head != nullptr){
-            temp = head;
-            head = head->next;
-            delete temp;
-        }
-    }
-    bool isEmpty(){
-        return head== nullptr;
+    bool isEmpty() {
+        return head == nullptr;
     }
 
     void enqueue(T t);
 
-    void dequeue(){
-        if(!isEmpty()){
-            Node *tmp=head;
+    void dequeue() {
+        if (!isEmpty()) {
+            Node *tmp = head;
             head = head->next;
             delete tmp;
-            if(isEmpty()){
+            if (isEmpty()) {
                 rear = nullptr;
             }
         }
@@ -63,11 +55,11 @@ private:
 
 template<typename T>
 void Queue<T>::enqueue(T t) {
-    Node *ptrnode =new Node(t);
-    if(rear!= nullptr){
-        rear->next=ptrnode;
+    Node *ptrnode = new Node(t);
+    if (rear != nullptr) {
+        rear->next = ptrnode;
         rear = ptrnode;
-    } else{
+    } else {
         head = rear = ptrnode;
     }
     length++;
@@ -75,14 +67,14 @@ void Queue<T>::enqueue(T t) {
 
 template<typename T>
 T Queue<T>::getHead() {
-    if(!isEmpty()){
+    if (!isEmpty()) {
         return head->t;
     }
 }
 
 template<typename T>
 T Queue<T>::getRear() {
-    if(!isEmpty()){
+    if (!isEmpty()) {
         return rear->t;
     }
 }

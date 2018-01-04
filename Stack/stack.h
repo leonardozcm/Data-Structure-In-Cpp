@@ -23,10 +23,8 @@ public:
 
     Stack();
 
-    virtual ~Stack();
-
     bool isEmpty();
-;
+
     void MakeEmpty();
 
     void Push(T t);
@@ -62,7 +60,7 @@ void Stack<T>::MakeEmpty() {
             Pop();
         }
     }
-    counts=0;
+    counts = 0;
 }
 
 template<typename T>
@@ -107,16 +105,6 @@ T Stack<T>::TopAndPop() {
 
 template<typename T>
 Stack<T>::Stack() { top = nullptr; }
-
-template<typename T>
-Stack<T>::~Stack() {
-    PtrToNode temp;
-    for (int i = 0; i < counts; ++i) {
-        temp = top;
-        top = top->next;
-        delete temp;
-    }
-}
 
 
 #endif //DATASTRUCTURESINCPP_STACK_H
