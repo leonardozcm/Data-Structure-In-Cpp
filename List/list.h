@@ -69,6 +69,14 @@ public:
 
     void Clear();
 
+    /**
+     * 此处会报错，在main中的intersect()结束调用后会被析构，
+     * 然后在主函数return 0以后再次被析构时报错——重复析构一个指针（double free ...）
+     * 调用默认析构函数后恢复正常。
+    ~List(){
+        Clear();
+    }*/
+
 private:
 
 
