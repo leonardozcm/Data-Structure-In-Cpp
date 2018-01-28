@@ -2,11 +2,11 @@
 #include "Stack/stack.h"
 #include "List/list.h"
 
-using namespace std;
+using std::iostream;
 
 bool isStringLegal(string str);
 
-List<int> intersect(List<int> list1, List<int> list2);
+List<int> intersect(List<int>& list1, List<int>& list2);
 
 int main() {
     List<int> list1;
@@ -64,8 +64,13 @@ bool isStringLegal(string str) {
 
     return stack.isEmpty();
 };
-
-List<int> intersect(List<int> list1, List<int> list2) {
+/**
+ * 对排好序的链表取交集
+ * @param list1
+ * @param list2
+ * @return
+ */
+List<int> intersect(List<int>& list1, List<int>& list2) {
     List<int> result;
     List<int>::PtrToNode L1, L2;
 
@@ -83,5 +88,6 @@ List<int> intersect(List<int> list1, List<int> list2) {
             L2 = L2->next;
         }
     }
+    cout<<"intersect被调用完毕"<<endl;
     return result;
 };

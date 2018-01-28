@@ -47,6 +47,14 @@ public:
 
     T getRear();
 
+    Queue<T> &operator=(Queue<T> obj);
+
+    void Clear();
+
+    ~Queue() {
+        Clear();
+    }
+
 private:
     PtrToNode head;
     PtrToNode rear;
@@ -77,6 +85,28 @@ T Queue<T>::getRear() {
     if (!isEmpty()) {
         return rear->t;
     }
+}
+
+template<typename T>
+void Queue<T>::Clear() {
+    Node *temp;
+    while (head != nullptr) {
+        temp = head;
+        head = head->next;
+        delete temp;
+    }
+    length = 0;
+}
+
+template<typename T>
+Queue<T> &Queue<T>::operator=(Queue<T> obj) {
+    Clear();
+    PtrToNode objtmp = obj.head;
+    while (objtmp != nullptr) {
+        this->enqueue(objtmp->t);
+        objtmp = objtmp->next;
+    }
+    return *this;
 }
 
 #endif //DATASTRUCTURESINCPP_QUEUE_H

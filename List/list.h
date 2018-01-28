@@ -69,16 +69,14 @@ public:
 
     void Clear();
 
-    /**
-     * 此处会报错，在main中的intersect()结束调用后会被析构，
-     * 然后在主函数return 0以后再次被析构时报错——重复析构一个指针（double free ...）
-     * 调用默认析构函数后恢复正常。
-    ~List(){
+    List<T>& operator=(List<T> obj);
+
+    ~List() {
         Clear();
-    }*/
+        cout<<"析构被调用"<<endl;
+    }
 
 private:
-
 
     Node *head;
     int length = 0;
@@ -96,7 +94,7 @@ bool List<T>::isLast(typename List<T>::Position position) {
 
 template<typename T>
 void List<T>::InsertHead(T t) {
-    Node *mhead = new Node(t);
+    auto *mhead = new Node(t);
     mhead->next = head;
     head = mhead;
 }
@@ -108,7 +106,7 @@ void List<T>::Insert(T t, int pos) {
     } else {
         typename List<T>::Position previous = FindByPos(pos - 1);
         typename List<T>::Position pnext = previous->next;
-        Node *mpNode = new Node(t);
+        auto *mpNode = new Node(t);
         previous->next = mpNode;
         mpNode->next = pnext;
     }
@@ -286,6 +284,20 @@ void List<T>::Clear() {
         delete temp;
     }
     length = 0;
+}
+
+template<typename T>
+List<T>& List<T>::operator=(List<T> obj) {
+    Clear();
+    PtrToNode objtmp = obj.head;
+    PtrToNode dirtmp = head;
+    if (objtmp->t != NULL)
+        dirtmp->t = objtmp->t;
+    while (objtmp != nullptr) {
+        this->add(objtmp->t);
+        objtmp = objtmp->next;
+    }
+    return *this;
 }
 
 
