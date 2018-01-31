@@ -65,7 +65,7 @@ public:
 
     void swapWithNext(int frontOne);
 
-    void Eroor(string msg);
+    void Error(string msg);
 
     void Clear();
 
@@ -149,7 +149,7 @@ void List<T>::removeByEle(T t) {
 template<typename T>
 void List<T>::removeByPos(int pos) {
     if (pos < 0) {
-        Eroor(PositivePosition);
+        Error(PositivePosition);
     } else if (pos == 0) {
         typename List<T>::Position Tmpcell = head;
         head = head->next;
@@ -162,7 +162,7 @@ void List<T>::removeByPos(int pos) {
         free(TmpCell);
         length--;
     } else {
-        Eroor(RemoveIllegal);
+        Error(RemoveIllegal);
     }
 }
 
@@ -252,7 +252,7 @@ void List<T>::PrintLots(List<int> list) {
 template<typename T>
 void List<T>::swapWithNext(int frontOne) {
     if (frontOne < 0 || frontOne >= length - 1) {
-        Eroor(OutOfBoundary);
+        Error(OutOfBoundary);
     } else if (frontOne == 0) {
         PtrToNode tmp = head->next;
         head->next = tmp->next;
@@ -271,7 +271,7 @@ void List<T>::swapWithNext(int frontOne) {
 }
 
 template<typename T>
-void List<T>::Eroor(const string msg) {
+void List<T>::Error(const string msg) {
     cout << msg << endl;
 }
 
