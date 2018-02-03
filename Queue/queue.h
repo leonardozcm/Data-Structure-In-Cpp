@@ -63,7 +63,7 @@ private:
 
 template<typename T>
 void Queue<T>::enqueue(T t) {
-    Node *ptrnode = new Node(t);
+    auto *ptrnode = new Node(t);
     if (rear != nullptr) {
         rear->next = ptrnode;
         rear = ptrnode;

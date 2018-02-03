@@ -1,26 +1,20 @@
 #include <iostream>
 #include "Stack/stack.h"
 #include "List/list.h"
+#include "Tree/tree.h"
 
 using std::iostream;
 
 bool isStringLegal(string str);
 
-List<int> intersect(List<int>& list1, List<int>& list2);
+List<int> intersect(List<int> &list1, List<int> &list2);
 
 int main() {
-    List<int> list1;
-    list1.add(0);
-    list1.add(1);
-    list1.add(2);
-    list1.add(3);
-    list1.add(5);
-    List<int> list2;
-    list2.add(2);
-    list2.add(2);
-    list2.add(5);
-    List<int> result = intersect(list1, list2);
-    result.Print();
+    BiTree<int> tree;
+    int a[10]={56,1,8,45,15,48,5,4,0,10};
+    tree.insert(a,10);
+    tree.Delete(8);
+    tree.print();
     return 0;
 }
 
@@ -64,13 +58,14 @@ bool isStringLegal(string str) {
 
     return stack.isEmpty();
 };
+
 /**
  * 对排好序的链表取交集
  * @param list1
  * @param list2
  * @return
  */
-List<int> intersect(List<int>& list1, List<int>& list2) {
+List<int> intersect(List<int> &list1, List<int> &list2) {
     List<int> result;
     List<int>::PtrToNode L1, L2;
 
@@ -88,6 +83,6 @@ List<int> intersect(List<int>& list1, List<int>& list2) {
             L2 = L2->next;
         }
     }
-    cout<<"intersect被调用完毕"<<endl;
+    cout << "intersect被调用完毕" << endl;
     return result;
 };

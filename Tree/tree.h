@@ -12,23 +12,34 @@ using std::iostream;
 template<typename T>
 class BiTree {
 public:
+    int trueDeleteMode = 1;
+    int fakeDeleteMode = 0;
+
     class Node {
     public:
         T t;
+        bool isDelete;
         Node *Left;
         Node *Right;
 
         Node(T myt) {
             t = myt;
             Left = Right = nullptr;
+            isDelete = false;
         }
+
+        bool operator<(const Node &node1) const;
+
+        bool operator>(const Node &node1) const;
+
+        bool operator==(const Node &node1) const;
     };
 
     typedef Node *PtrToNode;
     typedef PtrToNode Tree;
 
-    BiTree(Node *myroot) {
-        root = myroot;
+    BiTree() {
+        root = nullptr;
     };
 
     PtrToNode findtoPtr(T t);
@@ -39,19 +50,17 @@ public:
 
     void insert(T t);
 
+    void insert(T a[], int num);
+
     void Delete(T t);
 
     void clear();
 
-    bool operator<(Node node1, Node node2);
-
-    bool operator>(Node node1, Node node2);
-
-    bool operator==(Node node1, Node node2);
-
     T findmin();
 
     T findmax();
+
+    void print();
 
 private:
     Tree root;
@@ -59,21 +68,51 @@ private:
     void insert(T t, PtrToNode ptrToNode);
 
     PtrToNode findtoPtr(T t, PtrToNode ptrToNode);
+
+    PtrToNode findParents(T t, PtrToNode ptrToNode);
+
+    PtrToNode findMintoPtr(PtrToNode ptrToNode);
+
+    void space(int num);
+
+    void print(PtrToNode ptrToNode, int spacenum);
+
 };
 
 template<typename T>
-BiTree::PtrToNode BiTree<T>::findtoPtr(T t) {
+bool BiTree<T>::Node::operator<(const BiTree::Node &node1) const {
+    return this->t < node1.t;
+}
+
+template<typename T>
+bool BiTree<T>::Node::operator>(const BiTree::Node &node1) const {
+    return this->t > node1.t;
+}
+
+template<typename T>
+bool BiTree<T>::Node::operator==(const BiTree::Node &node1) const {
+    return this->t == node1.t;
+}
+
+template<typename T>
+typename BiTree<T>::PtrToNode BiTree<T>::findtoPtr(T t) {
     return findtoPtr(t, root);
 }
 
 template<typename T>
-BiTree::PtrToNode BiTree<T>::findMintoPtr() {
-    return nullptr;
+typename BiTree<T>::PtrToNode BiTree<T>::findMintoPtr() {
+    findMintoPtr(root);
 }
 
 template<typename T>
-BiTree::PtrToNode BiTree<T>::findMaxtoPtr() {
-    return nullptr;
+typename BiTree<T>::PtrToNode BiTree<T>::findMaxtoPtr() {
+    PtrToNode tmp = root;
+    if (root != nullptr) {
+        while (tmp->Right) {
+            tmp = tmp->Right;
+        }
+    }
+    return tmp;
 }
 
 template<typename T>
@@ -88,38 +127,18 @@ void BiTree<T>::insert(T t) {
 }
 
 template<typename T>
-void BiTree<T>::Delete(T t) {
-
-}
-
-template<typename T>
-bool BiTree<T>::operator<(BiTree::Node node1, BiTree::Node node2) {
-    return node1.t < node2.t;
-}
-
-template<typename T>
 T BiTree<T>::findmin() {
-    return nullptr;
+    return findMintoPtr()->t;
 }
 
 template<typename T>
 T BiTree<T>::findmax() {
-    return nullptr;
+    return findMaxtoPtr()->t;
 }
 
 template<typename T>
 void BiTree<T>::clear() {
 
-}
-
-template<typename T>
-bool BiTree<T>::operator>(BiTree::Node node1, BiTree::Node node2) {
-    return node1.t > node2.t;
-}
-
-template<typename T>
-bool BiTree<T>::operator==(BiTree::Node node1, BiTree::Node node2) {
-    return node1.t == node2.t;
 }
 
 template<typename T>
@@ -143,24 +162,121 @@ void BiTree<T>::insert(T t, BiTree::PtrToNode ptrToNode) {
 }
 
 template<typename T>
-BiTree::PtrToNode BiTree<T>::findtoPtr(T t, BiTree::PtrToNode ptrToNode) {
+typename BiTree<T>::PtrToNode BiTree<T>::findtoPtr(T t, BiTree::PtrToNode ptrToNode) {
     if (t == ptrToNode->t) {
         return ptrToNode;
-    } else if (t < ptrToNode->t){
-        if(ptrToNode->Left == nullptr){
+    } else if (t < ptrToNode->t) {
+        if (ptrToNode->Left == nullptr) {
             return nullptr;
-        } else{
-            findtoPtr(t,ptrToNode->Left);
+        } else {
+            findtoPtr(t, ptrToNode->Left);
         }
-    } else if (t>ptrToNode->t){
-        if(ptrToNode->Right== nullptr){
+    } else if (t > ptrToNode->t) {
+        if (ptrToNode->Right == nullptr) {
             return nullptr;
-        } else{
-            findtoPtr(t,ptrToNode->Right);
+        } else {
+            findtoPtr(t, ptrToNode->Right);
         }
     }
-        return nullptr;
+    return nullptr;
 }
 
+template<typename T>
+void BiTree<T>::Delete(T t) {
+
+
+    PtrToNode tmp = findtoPtr(t);
+    if (tmp != nullptr) {
+        PtrToNode minInRight = findMintoPtr(tmp->Right);
+        if (minInRight != nullptr) {
+            tmp->t = minInRight->t;
+            PtrToNode minParent = findParents(minInRight->t, tmp->Right);
+            if (minParent != nullptr) {
+                minParent->Left = minInRight->Right;
+            }
+            delete minInRight;
+
+        } else {
+            PtrToNode tmpParent = findParents(t, root);
+            if (t < tmpParent->t) {
+                tmpParent->Left = tmp->Left;
+            } else {
+                tmpParent->Right = tmp->Left;
+            }
+        }
+
+    }
+}
+
+template<typename T>
+typename BiTree<T>::PtrToNode BiTree<T>::findParents(T t, BiTree::PtrToNode ptrToNode) {
+    /* if (t == ptrToNode->t) {
+         return ptrToNode;
+     } else if (t < ptrToNode->t) {
+         if (ptrToNode->Left == nullptr) {
+             return nullptr;
+         } else {
+             findtoPtr(t, ptrToNode->Left);
+         }
+     } else if (t > ptrToNode->t) {
+         if (ptrToNode->Right == nullptr) {
+             return nullptr;
+         } else {
+             findtoPtr(t, ptrToNode->Right);
+         }
+     }*/
+    if (t < ptrToNode->t) {
+        if (ptrToNode->Left && t == ptrToNode->Left->t) {
+            return ptrToNode;
+        } else {
+            return findParents(t, ptrToNode->Left);
+        }
+    } else if (t > ptrToNode->t) {
+        if (ptrToNode->Right && t == ptrToNode->Right->t) {
+            return ptrToNode;
+        } else {
+            return findParents(t, ptrToNode->Right);
+        }
+    }
+    return nullptr;
+}
+
+template<typename T>
+typename BiTree<T>::PtrToNode BiTree<T>::findMintoPtr(BiTree::PtrToNode ptrToNode) {
+    PtrToNode tmp = ptrToNode;
+    if (tmp != nullptr) {
+        while (tmp->Left) {
+            tmp = tmp->Left;
+        }
+    }
+    return tmp;
+}
+
+template<typename T>
+void BiTree<T>::print() {
+    print(root, 0);
+}
+
+template<typename T>
+void BiTree<T>::space(int num) {
+    for (int i = 0; i < num; i++)
+        cout << ' ';
+}
+
+template<typename T>
+void BiTree<T>::print(BiTree::PtrToNode ptrToNode, int spacenum) {
+if(ptrToNode== nullptr)return;
+    print(ptrToNode->Right,spacenum+2);
+    space(spacenum);
+    cout<<ptrToNode->t<<endl;
+    print(ptrToNode->Left,spacenum+2);
+}
+
+template<typename T>
+void BiTree<T>::insert(T *a, int num) {
+    for (int i = 0; i < num; ++i) {
+        insert(a[i]);
+    }
+}
 
 #endif //DATASTRUCTURESINCPP_TREE_H
