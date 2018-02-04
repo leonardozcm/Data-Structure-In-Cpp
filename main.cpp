@@ -11,9 +11,11 @@ List<int> intersect(List<int> &list1, List<int> &list2);
 
 int main() {
     BiTree<int> tree;
-    int a[10]={56,1,8,45,15,48,5,4,0,10};
-    tree.insert(a,10);
-    tree.Delete(8);
+    int a[]={56,1,8,45,15,48,5,4,0,10};
+    for (int i = 0; i < 10; ++i) {
+        tree.insert(a[i]);
+    }
+    tree.Delete(5);
     tree.print();
     return 0;
 }

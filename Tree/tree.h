@@ -38,10 +38,6 @@ public:
     typedef Node *PtrToNode;
     typedef PtrToNode Tree;
 
-    BiTree() {
-        root = nullptr;
-    };
-
     PtrToNode findtoPtr(T t);
 
     PtrToNode findMintoPtr();
@@ -49,8 +45,6 @@ public:
     PtrToNode findMaxtoPtr();
 
     void insert(T t);
-
-    void insert(T a[], int num);
 
     void Delete(T t);
 
@@ -63,7 +57,7 @@ public:
     void print();
 
 private:
-    Tree root;
+    Tree root = nullptr;
 
     void insert(T t, PtrToNode ptrToNode);
 
@@ -169,13 +163,13 @@ typename BiTree<T>::PtrToNode BiTree<T>::findtoPtr(T t, BiTree::PtrToNode ptrToN
         if (ptrToNode->Left == nullptr) {
             return nullptr;
         } else {
-            findtoPtr(t, ptrToNode->Left);
+            return findtoPtr(t, ptrToNode->Left);
         }
     } else if (t > ptrToNode->t) {
         if (ptrToNode->Right == nullptr) {
             return nullptr;
         } else {
-            findtoPtr(t, ptrToNode->Right);
+            return findtoPtr(t, ptrToNode->Right);
         }
     }
     return nullptr;
@@ -265,18 +259,11 @@ void BiTree<T>::space(int num) {
 
 template<typename T>
 void BiTree<T>::print(BiTree::PtrToNode ptrToNode, int spacenum) {
-if(ptrToNode== nullptr)return;
-    print(ptrToNode->Right,spacenum+2);
+    if (ptrToNode == nullptr)return;
+    print(ptrToNode->Right, spacenum + 2);
     space(spacenum);
-    cout<<ptrToNode->t<<endl;
-    print(ptrToNode->Left,spacenum+2);
-}
-
-template<typename T>
-void BiTree<T>::insert(T *a, int num) {
-    for (int i = 0; i < num; ++i) {
-        insert(a[i]);
-    }
+    cout << ptrToNode->t << endl;
+    print(ptrToNode->Left, spacenum + 2);
 }
 
 #endif //DATASTRUCTURESINCPP_TREE_H
