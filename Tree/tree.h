@@ -22,6 +22,10 @@ public:
         Node *Left;
         Node *Right;
 
+        Node(){
+
+        }
+
         Node(T myt) {
             t = myt;
             Left = Right = nullptr;
@@ -56,6 +60,10 @@ public:
 
     void print();
 
+    ~BiTree() {
+        clear();
+    }
+
 private:
     Tree root = nullptr;
 
@@ -70,6 +78,8 @@ private:
     void space(int num);
 
     void print(PtrToNode ptrToNode, int spacenum);
+
+    void clear(PtrToNode ptrToNode);
 
 };
 
@@ -132,7 +142,10 @@ T BiTree<T>::findmax() {
 
 template<typename T>
 void BiTree<T>::clear() {
-
+    if (root != nullptr) {
+        clear(root->Right);
+        clear(root->Left);
+    }
 }
 
 template<typename T>
@@ -264,6 +277,15 @@ void BiTree<T>::print(BiTree::PtrToNode ptrToNode, int spacenum) {
     space(spacenum);
     cout << ptrToNode->t << endl;
     print(ptrToNode->Left, spacenum + 2);
+}
+
+template<typename T>
+void BiTree<T>::clear(BiTree::PtrToNode ptrToNode) {
+    if (ptrToNode != nullptr) {
+        clear(ptrToNode->Left);
+        clear(ptrToNode->Right);
+        delete ptrToNode;
+    }
 }
 
 #endif //DATASTRUCTURESINCPP_TREE_H
