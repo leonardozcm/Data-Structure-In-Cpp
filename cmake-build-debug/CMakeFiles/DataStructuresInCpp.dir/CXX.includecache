@@ -12,7 +12,7 @@ iostream
 
 /home/leonardo/CLionProjects/DataStructuresInCpp/Stack/stack.h
 
-/home/leonardo/CLionProjects/DataStructuresInCpp/Tree/tree.h
+/home/leonardo/CLionProjects/DataStructuresInCpp/Tree/AVLTree.h
 iostream
 -
 
@@ -23,6 +23,6 @@ Stack/stack.h
 /home/leonardo/CLionProjects/DataStructuresInCpp/Stack/stack.h
 List/list.h
 /home/leonardo/CLionProjects/DataStructuresInCpp/List/list.h
-Tree/tree.h
-/home/leonardo/CLionProjects/DataStructuresInCpp/Tree/tree.h
+Tree/AVLTree.h
+/home/leonardo/CLionProjects/DataStructuresInCpp/Tree/AVLTree.h
 

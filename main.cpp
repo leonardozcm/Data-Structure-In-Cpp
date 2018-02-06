@@ -1,7 +1,7 @@
 #include <iostream>
 #include "Stack/stack.h"
 #include "List/list.h"
-#include "Tree/tree.h"
+#include "Tree/AVLTree.h"
 
 using std::iostream;
 
@@ -10,12 +10,14 @@ bool isStringLegal(string str);
 List<int> intersect(List<int> &list1, List<int> &list2);
 
 int main() {
-    BiTree<int> tree;
-    int a[]={56,1,8,45,15,48,5,4,0,10};
+    AVLTree<int> tree;
+    int a[] = {56, 1, 8, 45, 15, 48, 5, 4, 0, 10};
     for (int i = 0; i < 10; ++i) {
         tree.insert(a[i]);
     }
-    tree.Delete(5);
+    tree.print();
+    cout<<endl<<endl<<endl;
+    tree.test(1);
     tree.print();
     return 0;
 }
