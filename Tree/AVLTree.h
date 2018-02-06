@@ -38,11 +38,11 @@ public:
 
     void singleRotateWithLeft(PtrToNode ptrToNode);
 
-    void doubleRotateWithLeft(PtrToNode ptrToNode);
+    void doubleRotateWithLeft_Right(PtrToNode ptrToNode);
 
     void singleRotateWithRight(PtrToNode ptrToNode);
 
-    void doubleRotateWithRight(PtrToNode ptrToNode);
+    void doubleRotateWithRight_Left(PtrToNode ptrToNode);
 
     void test(T t);
 
@@ -59,7 +59,7 @@ private:
 
     void clear(PtrToNode ptrToNode);
 
-    PtrToNode insertOperatTo_bf(PtrToNode ptrToNode);
+    void insertOperatTo_bf(PtrToNode ptrToNode);
 
 };
 
@@ -143,25 +143,64 @@ void AVLTree<T>::singleRotateWithLeft(AVLTree::PtrToNode ptrToNode) {
         ptrToNode->Right->Left = ptrToNode;
         ptrToNode->Parent = ptrToNode->Right;
         ptrToNode->Right = right_son_left_leaves;
-        right_son_left_leaves->Parent = ptrToNode;
+        if(right_son_left_leaves!= nullptr){
+            right_son_left_leaves->Parent = ptrToNode;
+        }
     } else {
-
+        root = ptrToNode->Right;
+        ptrToNode->Right->Left = ptrToNode;
+        ptrToNode->Right->Parent = nullptr;
+        ptrToNode->Parent = ptrToNode->Right;
+        ptrToNode->Right = right_son_left_leaves;
+        if(right_son_left_leaves!= nullptr){
+            right_son_left_leaves->Parent = ptrToNode;
+        }
     }
+    ptrToNode->bf = ptrToNode->Parent->bf = 0;
+
 }
 
 template<typename T>
-void AVLTree<T>::doubleRotateWithLeft(AVLTree::PtrToNode ptrToNode) {
-
+void AVLTree<T>::doubleRotateWithLeft_Right(AVLTree::PtrToNode ptrToNode) {
+    singleRotateWithLeft(ptrToNode->Left);
+    singleRotateWithRight(ptrToNode);
 }
 
 template<typename T>
 void AVLTree<T>::singleRotateWithRight(AVLTree::PtrToNode ptrToNode) {
+    PtrToNode root_parent = ptrToNode->Parent;
+    PtrToNode left_son_right_leaves = ptrToNode->Left->Right;
+    if (root_parent != nullptr) {
+        if (root_parent->Left == ptrToNode) {
+            root_parent->Left = ptrToNode->Left;
+        } else {
+            root_parent->Right = ptrToNode->Left;
+        }
+        ptrToNode->Left->Parent = root_parent;
+        ptrToNode->Left->Right = ptrToNode;
+        ptrToNode->Parent = ptrToNode->Left;
+        ptrToNode->Left = left_son_right_leaves;
+        if(left_son_right_leaves!= nullptr){
+            left_son_right_leaves->Parent = ptrToNode;
+        }
+    } else {
+        root = ptrToNode->Left;
+        ptrToNode->Left->Right = ptrToNode;
+        ptrToNode->Left->Parent = nullptr;
+        ptrToNode->Parent = ptrToNode->Left;
+        ptrToNode->Left = left_son_right_leaves;
+        if(left_son_right_leaves!= nullptr){
+            left_son_right_leaves->Parent = ptrToNode;
+        }
+    }
+    ptrToNode->bf=ptrToNode->Parent->bf=0;
 
 }
 
 template<typename T>
-void AVLTree<T>::doubleRotateWithRight(AVLTree::PtrToNode ptrToNode) {
-
+void AVLTree<T>::doubleRotateWithRight_Left(AVLTree::PtrToNode ptrToNode) {
+    singleRotateWithRight(ptrToNode->Right);
+    singleRotateWithLeft(ptrToNode);
 }
 
 /**
@@ -171,7 +210,7 @@ void AVLTree<T>::doubleRotateWithRight(AVLTree::PtrToNode ptrToNode) {
  * @return 最近的需要调整的结点
  */
 template<typename T>
-typename AVLTree<T>::PtrToNode AVLTree<T>::insertOperatTo_bf(AVLTree::PtrToNode ptrToNode) {
+void AVLTree<T>::insertOperatTo_bf(AVLTree::PtrToNode ptrToNode) {
     PtrToNode tmpOfParent = ptrToNode->Parent;
     if (tmpOfParent) {
         if (tmpOfParent->Left == ptrToNode)//操作节点为左叶子
@@ -182,16 +221,29 @@ typename AVLTree<T>::PtrToNode AVLTree<T>::insertOperatTo_bf(AVLTree::PtrToNode 
         }
         cout << "插入的节点：" << tmpOfParent->t << "，平衡因子：" << tmpOfParent->bf << endl;
         if (tmpOfParent->bf == 0) {
-            return nullptr;
+            return;
         }
-
-        insertOperatTo_bf(tmpOfParent);
+        if (tmpOfParent->bf == -2) {
+            if (tmpOfParent->Left->bf == -1) {
+                singleRotateWithRight(tmpOfParent);
+            } else if (tmpOfParent->Left->bf == 1) {
+                doubleRotateWithLeft_Right(tmpOfParent);
+            }
+        } else if (tmpOfParent->bf == 2) {
+            if (tmpOfParent->Right->bf == 1) {
+                singleRotateWithLeft(tmpOfParent);
+            } else if (tmpOfParent->Right->bf == -1) {
+                doubleRotateWithRight_Left(tmpOfParent);
+            }
+        } else{
+            insertOperatTo_bf(tmpOfParent);
+        }
     }
 }
 
 template<typename T>
 void AVLTree<T>::test(T t) {
-    singleRotateWithLeft(findtoPtr(t, root));
+    singleRotateWithRight(findtoPtr(t, root));
 
 }
 
@@ -203,7 +255,7 @@ void AVLTree<T>::insert(T t, PtrToNode ptrToNode) {
             ptrToNode->Left = mpNode;
             mpNode->Parent = ptrToNode;
             insertOperatTo_bf(mpNode);
-            cout << "根节点：" << root->t << "，平衡因子：" << root->bf << endl;
+            cout << "根节点：" << root->t << "，平衡因子：" << root->bf << endl<<endl;
         } else {
             insert(t, ptrToNode->Left);
         }
@@ -213,7 +265,7 @@ void AVLTree<T>::insert(T t, PtrToNode ptrToNode) {
             ptrToNode->Right = mpNode;
             mpNode->Parent = ptrToNode;
             insertOperatTo_bf(mpNode);
-            cout << "根的节点：" << root->t << "，平衡因子：" << root->bf << endl;
+            cout << "根的节点：" << root->t << "，平衡因子：" << root->bf << endl<<endl;
         } else {
             insert(t, ptrToNode->Right);
         }

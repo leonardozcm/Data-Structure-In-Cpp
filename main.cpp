@@ -11,13 +11,11 @@ List<int> intersect(List<int> &list1, List<int> &list2);
 
 int main() {
     AVLTree<int> tree;
-    int a[] = {56, 1, 8, 45, 15, 48, 5, 4, 0, 10};
-    for (int i = 0; i < 10; ++i) {
+    int a[] = {4,2,6,1,3,5,7,16,15,14,13};
+    for (int i = 0; i < 11; ++i) {
         tree.insert(a[i]);
     }
-    tree.print();
-    cout<<endl<<endl<<endl;
-    tree.test(1);
+    tree.insert(15);
     tree.print();
     return 0;
 }
