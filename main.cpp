@@ -16,6 +16,7 @@ int main() {
         tree.insert(a[i]);
     }
     tree.insert(15);
+    tree.Delete(16);
     tree.print();
     return 0;
 }

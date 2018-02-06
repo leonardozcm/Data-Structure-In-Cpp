@@ -7,7 +7,7 @@
 
 #include <iostream>
 
-using std::iostream;
+using namespace std;
 
 template<typename T>
 class BiTree {
@@ -190,8 +190,6 @@ typename BiTree<T>::PtrToNode BiTree<T>::findtoPtr(T t, BiTree::PtrToNode ptrToN
 
 template<typename T>
 void BiTree<T>::Delete(T t) {
-
-
     PtrToNode tmp = findtoPtr(t);
     if (tmp != nullptr) {
         PtrToNode minInRight = findMintoPtr(tmp->Right);
