@@ -6,6 +6,14 @@
 
 #IncludeRegexTransform: 
 
+/home/leonardo/CLionProjects/DataStructuresInCpp/HashMap/HashMap.h
+cstring
+-
+../List/list.h
+/home/leonardo/CLionProjects/DataStructuresInCpp/List/list.h
+exception
+-
+
 /home/leonardo/CLionProjects/DataStructuresInCpp/List/list.h
 iostream
 -
@@ -25,4 +33,6 @@ List/list.h
 /home/leonardo/CLionProjects/DataStructuresInCpp/List/list.h
 Tree/AVLTree.h
 /home/leonardo/CLionProjects/DataStructuresInCpp/Tree/AVLTree.h
+HashMap/HashMap.h
+/home/leonardo/CLionProjects/DataStructuresInCpp/HashMap/HashMap.h
 

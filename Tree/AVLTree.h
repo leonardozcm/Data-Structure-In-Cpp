@@ -20,11 +20,7 @@ public:
         AVLNode *Right;
         AVLNode *Parent;
 
-        AVLNode(T myT) {
-            bf = 0;
-            t = myT;
-            Left = Right = Parent = nullptr;
-        }
+        explicit AVLNode(T myT);
     };
 
     typedef AVLNode *PtrToNode;
@@ -67,6 +63,13 @@ private:
     PtrToNode findMinToPtr(PtrToNode ptrToNode);
 
 };
+
+template<typename T>
+AVLTree<T>::AVLNode::AVLNode(T myT) {
+    bf = 0;
+    t = myT;
+    Left = Right = Parent = nullptr;
+}
 
 template<typename T>
 void AVLTree<T>::insert(T t) {
@@ -311,7 +314,6 @@ void AVLTree<T>::insert(T t, PtrToNode ptrToNode) {
             ptrToNode->Left = mpNode;
             mpNode->Parent = ptrToNode;
             insertOperateTo_bf(mpNode);
-            cout << "根节点：" << root->t << "，平衡因子：" << root->bf << endl << endl;
         } else {
             insert(t, ptrToNode->Left);
         }
@@ -321,7 +323,6 @@ void AVLTree<T>::insert(T t, PtrToNode ptrToNode) {
             ptrToNode->Right = mpNode;
             mpNode->Parent = ptrToNode;
             insertOperateTo_bf(mpNode);
-            cout << "根的节点：" << root->t << "，平衡因子：" << root->bf << endl << endl;
         } else {
             insert(t, ptrToNode->Right);
         }

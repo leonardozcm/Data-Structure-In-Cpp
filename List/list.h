@@ -69,11 +69,11 @@ public:
 
     void Clear();
 
-    List<T>& operator=(List<T> obj);
+    //  List<T>& operator=(List<T> obj);
 
     ~List() {
         Clear();
-        cout<<"析构被调用"<<endl;
+        cout << "析构被调用" << endl;
     }
 
 private:
@@ -277,15 +277,15 @@ void List<T>::Error(const string msg) {
 
 template<typename T>
 void List<T>::Clear() {
-    Node *temp;
-    while (head != nullptr) {
+    Node *temp ;
+    while (head) {
         temp = head;
         head = head->next;
         delete temp;
     }
     length = 0;
 }
-
+/*
 template<typename T>
 List<T>& List<T>::operator=(List<T> obj) {
     Clear();
@@ -299,6 +299,6 @@ List<T>& List<T>::operator=(List<T> obj) {
     }
     return *this;
 }
-
+*/
 
 #endif //DATASTRUCTURESINCPP_LIST_H

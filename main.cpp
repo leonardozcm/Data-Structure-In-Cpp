@@ -2,6 +2,7 @@
 #include "Stack/stack.h"
 #include "List/list.h"
 #include "Tree/AVLTree.h"
+#include "HashMap/HashMap.h"
 
 using std::iostream;
 
@@ -10,15 +11,12 @@ bool isStringLegal(string str);
 List<int> intersect(List<int> &list1, List<int> &list2);
 
 int main() {
-    AVLTree<int> tree;
-    int a[] = {4,2,6,1,3,5,7,16,15,14,13};
-    for (int i = 0; i < 11; ++i) {
-        tree.insert(a[i]);
-    }
-    tree.insert(15);
-    tree.Delete(16);
-    tree.print();
-    return 0;
+    HashMap<int> map;
+    map.insert("first", 1);
+    map.insert("second", 2);
+    cout << map.find("first") << endl;
+    cout << map.find("second") << endl;
+
 }
 
 /**

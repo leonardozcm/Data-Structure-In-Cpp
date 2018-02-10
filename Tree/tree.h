@@ -22,7 +22,7 @@ public:
         Node *Left;
         Node *Right;
 
-        Node(){
+        Node() {
 
         }
 
@@ -215,21 +215,6 @@ void BiTree<T>::Delete(T t) {
 
 template<typename T>
 typename BiTree<T>::PtrToNode BiTree<T>::findParents(T t, BiTree::PtrToNode ptrToNode) {
-    /* if (t == ptrToNode->t) {
-         return ptrToNode;
-     } else if (t < ptrToNode->t) {
-         if (ptrToNode->Left == nullptr) {
-             return nullptr;
-         } else {
-             findtoPtr(t, ptrToNode->Left);
-         }
-     } else if (t > ptrToNode->t) {
-         if (ptrToNode->Right == nullptr) {
-             return nullptr;
-         } else {
-             findtoPtr(t, ptrToNode->Right);
-         }
-     }*/
     if (t < ptrToNode->t) {
         if (ptrToNode->Left && t == ptrToNode->Left->t) {
             return ptrToNode;

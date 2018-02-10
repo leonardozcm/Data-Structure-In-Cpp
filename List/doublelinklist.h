@@ -23,7 +23,7 @@ public:
         Node *next;
         Node *previous;
 
-        Node(T myt) {
+        explicit Node(T myt) {
             t = myt;
             previous = nullptr;
             next = nullptr;
