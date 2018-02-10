@@ -7,7 +7,7 @@
 
 #include <cstring>
 #include "../List/list.h"
-#include <exception>
+
 
 #define MaxIndex 10
 typedef unsigned int Index;
@@ -50,7 +50,7 @@ HashMap<T>::~HashMap() {
 }
 
 template<typename T>
-void HashMap<T>::insert(const char *Key, T t) {
+void HashMap<T>::insert(const char* Key, T t) {
     pair<const char *, T> pair(Key, t);
     indexList[Hash(Key)].add(pair);
 }
@@ -64,7 +64,7 @@ template<typename T>
 T HashMap<T>::find(const char *Key) {
     auto *ptrToNode = indexList[Hash(Key)].FindByPos(0);
     while (ptrToNode &&
-            !strcmp(ptrToNode->t.first, Key)) {
+            strcmp(ptrToNode->t.first, Key)) {
         ptrToNode = ptrToNode->next;
     }
     if (ptrToNode) {

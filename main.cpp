@@ -1,7 +1,6 @@
 #include <iostream>
 #include "Stack/stack.h"
 #include "List/list.h"
-#include "Tree/AVLTree.h"
 #include "HashMap/HashMap.h"
 
 using std::iostream;
@@ -12,10 +11,12 @@ List<int> intersect(List<int> &list1, List<int> &list2);
 
 int main() {
     HashMap<int> map;
+    char first[]="first";
+    char second[]="second";
     map.insert("first", 1);
-    map.insert("second", 2);
-    cout << map.find("first") << endl;
-    cout << map.find("second") << endl;
+    map.insert(second, 2);
+    cout << map.find(first) << endl;
+    cout << map.find(second) << endl;
 
 }
 
