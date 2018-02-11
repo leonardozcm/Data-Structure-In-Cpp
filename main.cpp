@@ -2,6 +2,7 @@
 #include "Stack/stack.h"
 #include "List/list.h"
 #include "HashMap/HashMap.h"
+#include "HashMap/OaHashMap.h"
 
 using std::iostream;
 
@@ -10,7 +11,7 @@ bool isStringLegal(string str);
 List<int> intersect(List<int> &list1, List<int> &list2);
 
 int main() {
-    HashMap<int> map;
+    OaHashMap<int> map;
     char first[]="first";
     char second[]="second";
     map.insert("first", 1);

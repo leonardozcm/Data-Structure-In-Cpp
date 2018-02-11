@@ -87,6 +87,9 @@
 		<Unit filename="/home/leonardo/CLionProjects/DataStructuresInCpp/HashMap/HashMap.h">
 			<Option target="DataStructuresInCpp"/>
 		</Unit>
+		<Unit filename="/home/leonardo/CLionProjects/DataStructuresInCpp/HashMap/OaHashMap.h">
+			<Option target="DataStructuresInCpp"/>
+		</Unit>
 		<Unit filename="/home/leonardo/CLionProjects/DataStructuresInCpp/List/doublelinklist.h">
 			<Option target="DataStructuresInCpp"/>
 		</Unit>

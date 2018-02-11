@@ -8,7 +8,6 @@
 #include <cstring>
 #include "../List/list.h"
 
-
 #define MaxIndex 10
 typedef unsigned int Index;
 
