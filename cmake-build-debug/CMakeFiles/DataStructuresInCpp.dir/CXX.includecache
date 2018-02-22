@@ -18,6 +18,10 @@ cstring
 iostream
 -
 
+/home/leonardo/CLionProjects/DataStructuresInCpp/Heap/Heap.h
+iostream
+-
+
 /home/leonardo/CLionProjects/DataStructuresInCpp/List/list.h
 iostream
 -
@@ -35,4 +39,6 @@ HashMap/HashMap.h
 /home/leonardo/CLionProjects/DataStructuresInCpp/HashMap/HashMap.h
 HashMap/OaHashMap.h
 /home/leonardo/CLionProjects/DataStructuresInCpp/HashMap/OaHashMap.h
+Heap/Heap.h
+/home/leonardo/CLionProjects/DataStructuresInCpp/Heap/Heap.h
 

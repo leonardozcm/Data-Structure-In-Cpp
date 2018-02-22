@@ -3,6 +3,7 @@
 
 CMakeFiles/DataStructuresInCpp.dir/main.cpp.o: ../HashMap/HashMap.h
 CMakeFiles/DataStructuresInCpp.dir/main.cpp.o: ../HashMap/OaHashMap.h
+CMakeFiles/DataStructuresInCpp.dir/main.cpp.o: ../Heap/Heap.h
 CMakeFiles/DataStructuresInCpp.dir/main.cpp.o: ../List/list.h
 CMakeFiles/DataStructuresInCpp.dir/main.cpp.o: ../Stack/stack.h
 CMakeFiles/DataStructuresInCpp.dir/main.cpp.o: ../main.cpp

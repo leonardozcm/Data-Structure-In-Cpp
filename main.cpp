@@ -3,6 +3,7 @@
 #include "List/list.h"
 #include "HashMap/HashMap.h"
 #include "HashMap/OaHashMap.h"
+#include "Heap/Heap.h"
 
 using std::iostream;
 
@@ -11,13 +12,20 @@ bool isStringLegal(string str);
 List<int> intersect(List<int> &list1, List<int> &list2);
 
 int main() {
-    OaHashMap<int> map;
-    char first[]="first";
-    char second[]="second";
-    map.insert("first", 1);
-    map.insert(second, 2);
-    cout << map.find(first) << endl;
-    cout << map.find(second) << endl;
+    Heap<int> heap;
+    heap.insert(13);
+    heap.insert(14);
+    heap.insert(16);
+    heap.insert(19);
+    heap.insert(21);
+    heap.insert(19);
+    heap.insert(68);
+    heap.insert(65);
+    heap.insert(26);
+    heap.insert(32);
+    heap.insert(31);
+    heap.DeleteMin();
+    heap.print();
 
 }
 
