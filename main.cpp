@@ -1,9 +1,7 @@
 #include <iostream>
 #include "Stack/stack.h"
 #include "List/list.h"
-#include "HashMap/HashMap.h"
-#include "HashMap/OaHashMap.h"
-#include "Heap/Heap.h"
+#include "Heap/BinQueue.h"
 
 using std::iostream;
 
@@ -12,23 +10,16 @@ bool isStringLegal(string str);
 List<int> intersect(List<int> &list1, List<int> &list2);
 
 int main() {
-    Heap<int> heap;
-    heap.insert(13);
-    heap.insert(14);
-    heap.insert(16);
-    heap.insert(19);
-    heap.insert(21);
-    heap.insert(19);
-    heap.insert(68);
-    heap.insert(65);
-    heap.insert(26);
-    heap.insert(32);
-    heap.insert(31);
-    heap.DeleteMin();
-    heap.print();
+    BinQueue<int> binQueue1, binQueue2;
+    binQueue1.insert(16);
+    binQueue1.insert(18);
+    binQueue1.insert(12);
+    binQueue1.insert(51);
+    binQueue1.insert(24);
+    binQueue1.insert(65);
+    cout << binQueue1.DeleteMin() << endl;
 
 }
-
 /**
  * 判断代码块是否有未闭合的括号
  * @param str

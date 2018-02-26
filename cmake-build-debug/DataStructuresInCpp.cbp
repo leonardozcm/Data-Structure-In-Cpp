@@ -90,6 +90,9 @@
 		<Unit filename="/home/leonardo/CLionProjects/DataStructuresInCpp/HashMap/OaHashMap.h">
 			<Option target="DataStructuresInCpp"/>
 		</Unit>
+		<Unit filename="/home/leonardo/CLionProjects/DataStructuresInCpp/Heap/BinQueue.h">
+			<Option target="DataStructuresInCpp"/>
+		</Unit>
 		<Unit filename="/home/leonardo/CLionProjects/DataStructuresInCpp/Heap/Heap.h">
 			<Option target="DataStructuresInCpp"/>
 		</Unit>
