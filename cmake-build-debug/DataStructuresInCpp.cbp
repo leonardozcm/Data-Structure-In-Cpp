@@ -114,6 +114,12 @@
 		<Unit filename="/home/leonardo/CLionProjects/DataStructuresInCpp/Tree/tree.h">
 			<Option target="DataStructuresInCpp"/>
 		</Unit>
+		<Unit filename="/home/leonardo/CLionProjects/DataStructuresInCpp/algorithm/zcmAlgorithm.cpp">
+			<Option target="DataStructuresInCpp"/>
+		</Unit>
+		<Unit filename="/home/leonardo/CLionProjects/DataStructuresInCpp/algorithm/zcmAlgorithm.h">
+			<Option target="DataStructuresInCpp"/>
+		</Unit>
 		<Unit filename="/home/leonardo/CLionProjects/DataStructuresInCpp/main.cpp">
 			<Option target="DataStructuresInCpp"/>
 		</Unit>

@@ -16,13 +16,17 @@ iostream
 
 /home/leonardo/CLionProjects/DataStructuresInCpp/Stack/stack.h
 
-/home/leonardo/CLionProjects/DataStructuresInCpp/main.cpp
-iostream
--
-Stack/stack.h
+/home/leonardo/CLionProjects/DataStructuresInCpp/algorithm/zcmAlgorithm.cpp
+zcmAlgorithm.h
+/home/leonardo/CLionProjects/DataStructuresInCpp/algorithm/zcmAlgorithm.h
+../Stack/stack.h
 /home/leonardo/CLionProjects/DataStructuresInCpp/Stack/stack.h
-List/list.h
+
+/home/leonardo/CLionProjects/DataStructuresInCpp/algorithm/zcmAlgorithm.h
+../List/list.h
 /home/leonardo/CLionProjects/DataStructuresInCpp/List/list.h
+
+/home/leonardo/CLionProjects/DataStructuresInCpp/main.cpp
 Heap/BinQueue.h
 /home/leonardo/CLionProjects/DataStructuresInCpp/Heap/BinQueue.h
 

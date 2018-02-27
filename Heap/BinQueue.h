@@ -11,12 +11,17 @@
 #define Capacity 1024
 
 using namespace std;
+
 template<typename T>
 class BinQueue {
 public:
     BinQueue() {
         Currentsize = 0;
+        for (int i = 0; i < Maxtrees; ++i) {
+            TheTree[i] = nullptr;
+        }
     };
+
     class BinNode {
     public:
         T t;
@@ -28,6 +33,7 @@ public:
             LeftChild = NextSilbling = nullptr;
         };
     };
+
     typedef BinNode *BinTree;
 
     BinTree CombineTrees(BinTree T1, BinTree T2);
@@ -45,7 +51,6 @@ private:
     BinTree TheTree[Maxtrees];
 
 
-
     void Error();
 };
 
@@ -57,6 +62,7 @@ void BinQueue<T>::Merge(BinQueue H) {
 
     if (Currentsize + H.Currentsize > Capacity) {
         Error();
+        return;
     }
 
     Currentsize += H.Currentsize;
@@ -64,7 +70,7 @@ void BinQueue<T>::Merge(BinQueue H) {
         T1 = TheTree[i];
         T2 = H.TheTree[i];
         switch (!!T1 + 2 * !!T2 + 4 * !!Carry) {
-            case 0:;
+            case 0:
             case 1:
                 break;
             case 2:
@@ -116,7 +122,7 @@ T BinQueue<T>::DeleteMin() {
                 MinItem = TheTree[i]->t;
                 isFirst = false;
             }
-            if (TheTree[i] < MinItem) {
+            if (TheTree[i]->t < MinItem) {
                 MinItem = TheTree[i]->t;
                 MinTree = i;
             }
@@ -141,11 +147,17 @@ T BinQueue<T>::DeleteMin() {
 }
 
 template<typename T>
-BinTree BinQueue<T>::CombineTrees(BinQueue::BinTree T1, BinQueue::BinTree T2) {
-    if (T1->t > T2->t)
-        return CombineTrees(T2, T1);
-    T2->NextSilbling = T1->LeftChild;
-    T1->LeftChild = T2;
+typename BinQueue<T>::BinTree BinQueue<T>::CombineTrees(BinQueue::BinTree T1, BinQueue::BinTree T2) {
+    if (T2) {
+        if (T1->t > T2->t)
+            return CombineTrees(T2, T1);
+        if (T1->LeftChild)
+            T2->NextSilbling = T1->LeftChild;
+        else
+            T2->NextSilbling = nullptr;
+        T1->LeftChild = T2;
+
+    }
     return T1;
 }
 
@@ -161,11 +173,7 @@ bool BinQueue<T>::isEmpty() {
 
 template<typename T>
 void BinQueue<T>::insert(T t) {
-    BinNode node(t);
-    BinQueue<T> binQueue;
-    binQueue.TheTree[0] = &node;
-    Merge(binQueue);
-
+//todo insert();
 }
 
 
