@@ -102,8 +102,6 @@ void ShellSort(int A[], int N) {
                 A[j] = tmp;
             }
         }
-
-
 };
 
 void PecDown(int A[], int i, int N) {
@@ -152,24 +150,90 @@ int Median3(int A[], int left, int right) {
 void Qsort(int A[], int left, int right) {
     int i, j;
     int Pivot;
-    if(left+cutoff<right){
-        Pivot=Median3(A,left,right-1);
-        i=left-1;j=right-2;
-        while (true){
-            while (A[++i]<Pivot){};
-            while (A[--j]>Pivot){};
-            if(i<j)
-                Swap(&A[i],&A[j]);
+    if (left + cutoff < right) {
+        Pivot = Median3(A, left, right - 1);
+        i = left - 1;
+        j = right - 2;
+        while (true) {
+            while (A[++i] < Pivot) {};
+            while (A[--j] > Pivot) {};
+            if (i < j)
+                Swap(&A[i], &A[j]);
             else
                 break;
         }
-        Swap(&A[i],&A[right-2]);
-        Qsort(A,left,i-1);Qsort(A,i+1,right-1);
+        Swap(&A[i], &A[right - 2]);
+        Qsort(A, left, i - 1);
+        Qsort(A, i + 1, right - 1);
 
-    } else{
-        InsertionSort(A,);
+    } else {
+        InsertionSort(A + left, right - left + 1);
     }
 
 };
 
-void Quicksort(int A[], int N);
+void Quicksort(int A[], int N) {
+    Qsort(A, 0, N);
+};
+
+/*assuming all Elements less than M*/
+void BucketSort(int A[], int N, int M) {
+    auto *TmpArray = (int *) malloc(M * sizeof(int));
+    int i, j;
+    for (i = 0; i < N; ++i) {
+        TmpArray[A[i]]++;
+    }
+    int pos = 0;
+    for (i = 0; i < M; i++) {
+        if (TmpArray[i])
+            for (j = 0; i < TmpArray[i]; i++)
+                A[pos++] = i;
+    }
+    free(TmpArray);
+};
+
+void MSort(int A[], int TmpArray[], int left, int right) {
+    int Center;
+    if (left < right) {
+        Center = (left + right) / 2;
+        MSort(A, TmpArray, left, Center);
+        MSort(A, TmpArray, Center + 1, right);
+        Merge(A, TmpArray, left, Center + 1, right);
+    }
+};
+
+void MergeSort(int A[], int N) {
+    auto *TmpArray = (int *) malloc(N * sizeof(int));
+    if (!TmpArray) {
+        MSort(A, TmpArray, 0, N - 1);
+        free(TmpArray);
+    } else {
+        cout << "out of space" << endl;
+    }
+};
+
+void Merge(int A[], int TmpArray[], int left, int Center, int right) {
+    int i, j, pos;
+    i = left;
+    j = Center;
+    pos = left;
+    while (i < Center && j <= right) {
+        if (A[i] < A[j])
+            TmpArray[pos++] = A[i++];
+        else
+            TmpArray[pos++] = A[j++];
+    }
+    if (i == Center) {
+        i = j;
+        j = right
+    } else if (j == right) {
+        j = Center - 1;
+    }
+
+    for (; i <= j; i++) {
+        TmpArray[pos++] = A[i];
+    }
+    for (i = left; i < right; i++) {
+        A[i] = TmpArray[i];
+    }
+};

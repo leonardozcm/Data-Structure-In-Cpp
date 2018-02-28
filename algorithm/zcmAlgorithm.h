@@ -26,10 +26,20 @@ void PecDown(int A[], int i, int N);
 
 void HeapSort(int A[], int N);
 
+//归并排序
+void MSort(int A[], int TmpArray[], int left, int right);
+
+void MergeSort(int A[], int N);
+
+void Merge(int A[], int TmpArray[], int left, int Center, int right);
+
 //快速排序
 int Median3(int A[], int left, int right);
 
 void Qsort(int A[], int left, int right);
 
 void Quicksort(int A[], int N);
+//桶排序
+/*assuming all Elements less than M*/
+void BucketSort(int A[], int N, int M);
 #endif //DATASTRUCTURESINCPP_ZCMALGORITHM_H

@@ -4,6 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
+  "/home/leonardo/CLionProjects/DataStructuresInCpp/DisjSet/DisjSet.cpp" "/home/leonardo/CLionProjects/DataStructuresInCpp/cmake-build-debug/CMakeFiles/DataStructuresInCpp.dir/DisjSet/DisjSet.cpp.o"
   "/home/leonardo/CLionProjects/DataStructuresInCpp/algorithm/zcmAlgorithm.cpp" "/home/leonardo/CLionProjects/DataStructuresInCpp/cmake-build-debug/CMakeFiles/DataStructuresInCpp.dir/algorithm/zcmAlgorithm.cpp.o"
   "/home/leonardo/CLionProjects/DataStructuresInCpp/main.cpp" "/home/leonardo/CLionProjects/DataStructuresInCpp/cmake-build-debug/CMakeFiles/DataStructuresInCpp.dir/main.cpp.o"
   )

@@ -1,6 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/DataStructuresInCpp.dir/main.cpp.o"
   "CMakeFiles/DataStructuresInCpp.dir/algorithm/zcmAlgorithm.cpp.o"
+  "CMakeFiles/DataStructuresInCpp.dir/DisjSet/DisjSet.cpp.o"
   "DataStructuresInCpp.pdb"
   "DataStructuresInCpp"
 )

@@ -123,6 +123,33 @@ DataStructuresInCpp/fast:
 	$(MAKE) -f CMakeFiles/DataStructuresInCpp.dir/build.make CMakeFiles/DataStructuresInCpp.dir/build
 .PHONY : DataStructuresInCpp/fast
 
+DisjSet/DisjSet.o: DisjSet/DisjSet.cpp.o
+
+.PHONY : DisjSet/DisjSet.o
+
+# target to build an object file
+DisjSet/DisjSet.cpp.o:
+	$(MAKE) -f CMakeFiles/DataStructuresInCpp.dir/build.make CMakeFiles/DataStructuresInCpp.dir/DisjSet/DisjSet.cpp.o
+.PHONY : DisjSet/DisjSet.cpp.o
+
+DisjSet/DisjSet.i: DisjSet/DisjSet.cpp.i
+
+.PHONY : DisjSet/DisjSet.i
+
+# target to preprocess a source file
+DisjSet/DisjSet.cpp.i:
+	$(MAKE) -f CMakeFiles/DataStructuresInCpp.dir/build.make CMakeFiles/DataStructuresInCpp.dir/DisjSet/DisjSet.cpp.i
+.PHONY : DisjSet/DisjSet.cpp.i
+
+DisjSet/DisjSet.s: DisjSet/DisjSet.cpp.s
+
+.PHONY : DisjSet/DisjSet.s
+
+# target to generate assembly for a file
+DisjSet/DisjSet.cpp.s:
+	$(MAKE) -f CMakeFiles/DataStructuresInCpp.dir/build.make CMakeFiles/DataStructuresInCpp.dir/DisjSet/DisjSet.cpp.s
+.PHONY : DisjSet/DisjSet.cpp.s
+
 algorithm/zcmAlgorithm.o: algorithm/zcmAlgorithm.cpp.o
 
 .PHONY : algorithm/zcmAlgorithm.o
@@ -186,6 +213,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... DataStructuresInCpp"
+	@echo "... DisjSet/DisjSet.o"
+	@echo "... DisjSet/DisjSet.i"
+	@echo "... DisjSet/DisjSet.s"
 	@echo "... algorithm/zcmAlgorithm.o"
 	@echo "... algorithm/zcmAlgorithm.i"
 	@echo "... algorithm/zcmAlgorithm.s"
