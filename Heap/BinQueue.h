@@ -46,12 +46,16 @@ public:
 
     void insert(T t);
 
+    void print();
+
 private:
     int Currentsize;
     BinTree TheTree[Maxtrees];
 
 
     void Error();
+
+    void print(BinTree binTree);
 };
 
 template<typename T>
@@ -130,8 +134,11 @@ T BinQueue<T>::DeleteMin() {
     }
 
     oldRoot = TheTree[MinTree];
-    deletedTree = oldRoot->LeftChild;
-    delete oldRoot;
+    if (oldRoot) {
+        deletedTree = oldRoot->LeftChild;
+        delete oldRoot;
+    }
+
 
     deletedQueue.Currentsize = (1 << MinTree) - 1;
     for (j = MinTree - 1; j >= 0; j--) {
@@ -174,7 +181,72 @@ bool BinQueue<T>::isEmpty() {
 template<typename T>
 void BinQueue<T>::insert(T t) {
 //todo insert();
+    BinTree T1, Carry;
+    T1 = nullptr;
+    Carry = new BinNode(t);
+    int i;
+
+    if (Currentsize + 1 > Capacity) {
+        Error();
+        return;
+    }
+
+    if (!Currentsize) {
+        TheTree[0] = Carry;
+    } else {
+        for (i = 0; i < Maxtrees; ++i) {
+            T1 = TheTree[i];
+            switch (!!T1 + 2 * !!Carry) {
+                case 0:
+                case 1:
+                    break;
+                case 2:
+                    TheTree[i] = Carry;
+                    Carry = nullptr;
+                    break;
+                case 3:
+                    Carry = CombineTrees(T1, Carry);
+                    TheTree[i] = nullptr;
+                    break;
+            }
+        }
+
+    }
+
+    Currentsize++;
 }
 
+template<typename T>
+void BinQueue<T>::print() {
+    for (auto i:TheTree) {
+        print(i);
+        cout << endl;
+    }
+
+}
+
+template<typename T>
+void BinQueue<T>::print(BinQueue::BinTree binTree) {
+    if (binTree) {
+        cout << binTree->t << endl;
+        print(binTree->NextSilbling);
+        print(binTree->LeftChild);
+    }
+
+}
+
+void BinQueuetest(){
+    BinQueue<int> binQueue1;
+    binQueue1.insert(16);
+    binQueue1.insert(18);
+    binQueue1.insert(12);
+    binQueue1.insert(51);
+    binQueue1.insert(24);
+    binQueue1.insert(65);
+    binQueue1.print();
+
+    cout <<endl<< binQueue1.DeleteMin() << endl<<endl;
+    binQueue1.print();
+};
 
 #endif //DATASTRUCTURESINCPP_BINQUEUE_H

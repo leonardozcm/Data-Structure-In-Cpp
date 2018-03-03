@@ -83,11 +83,12 @@ void InsertionSort(int A[], int N) {
         tmp = A[p];
         for (j = p; j > 0 && A[j - 1] > tmp; j--) {
             A[j] = A[j - 1];
-            A[j] = tmp;
+            A[j - 1] = tmp;
         }
     }
 };
 
+/*!*/
 void ShellSort(int A[], int N) {
     int i, j, Increment, tmp;
 
@@ -99,7 +100,7 @@ void ShellSort(int A[], int N) {
                     A[j] = A[j - Increment];
                 else
                     break;
-                A[j] = tmp;
+                A[j - Increment] = tmp;
             }
         }
 };
@@ -122,12 +123,12 @@ void PecDown(int A[], int i, int N) {
 
 void HeapSort(int A[], int N) {
     int i;
-    for (i = N / 2; i > 0; i--) {
-        PecDown(A, 0, i);
+    for (i = N / 2; i >= 0; i--) {
+        PecDown(A, i, N - 1);
     }
-    for (i = N - 1; i > 0; i--) {
+    for (i = N - 1; i > 1; i--) {
         Swap(&A[0], &A[i]);
-        PecDown(A, 0, i);
+        PecDown(A, 0, i - 1);
     }
 };
 
@@ -140,7 +141,8 @@ int Median3(int A[], int left, int right) {
         Swap(&A[left], &A[right]);
     if (A[Center] > A[right])
         Swap(&A[Center], &A[right]);
-
+    ArrayPrint(A, 16);
+    cout << endl << endl;
     Swap(&A[Center], &A[right - 1]);
     return A[right - 1];
 };
@@ -163,11 +165,13 @@ void Qsort(int A[], int left, int right) {
                 break;
         }
         Swap(&A[i], &A[right - 2]);
+        ArrayPrint(A, 16);
+        cout << endl << endl;
         Qsort(A, left, i - 1);
-        Qsort(A, i + 1, right - 1);
+        Qsort(A, i + 1, right);
 
     } else {
-        InsertionSort(A + left, right - left + 1);
+        InsertionSort(A + left, right - left );
     }
 
 };
@@ -186,7 +190,7 @@ void BucketSort(int A[], int N, int M) {
     int pos = 0;
     for (i = 0; i < M; i++) {
         if (TmpArray[i])
-            for (j = 0; i < TmpArray[i]; i++)
+            for (j = 0; j < TmpArray[i]; j++)
                 A[pos++] = i;
     }
     free(TmpArray);
@@ -225,7 +229,7 @@ void Merge(int A[], int TmpArray[], int left, int Center, int right) {
     }
     if (i == Center) {
         i = j;
-        j = right
+        j = right;
     } else if (j == right) {
         j = Center - 1;
     }
@@ -236,4 +240,21 @@ void Merge(int A[], int TmpArray[], int left, int Center, int right) {
     for (i = left; i < right; i++) {
         A[i] = TmpArray[i];
     }
+};
+
+void ArrayPrint(int A[], int N) {
+    int i = 0;
+    for (; i < N; i++) {
+        cout << A[i] << ',';
+    }
+}
+
+void Test(){
+    int A[] = {10, 5, 87, 14, 96, 63, 44, 15, 89, 15, 56, 12, 48, 6, 8, 7};
+//    InsertionSort(A,16);
+//    ShellSort(A,16);
+//    BucketSort(A,16,100);
+//    HeapSort(A,16);
+//    Quicksort(A,16);
+    ArrayPrint(A, 16);
 };

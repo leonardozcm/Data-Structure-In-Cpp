@@ -6,9 +6,11 @@
 
 #IncludeRegexTransform: 
 
-/home/leonardo/CLionProjects/DataStructuresInCpp/Heap/BinQueue.h
-iostream
--
+/home/leonardo/CLionProjects/DataStructuresInCpp/DisjSet/DisjSet.cpp
+DisjSet.h
+/home/leonardo/CLionProjects/DataStructuresInCpp/DisjSet/DisjSet.h
+
+/home/leonardo/CLionProjects/DataStructuresInCpp/DisjSet/DisjSet.h
 
 /home/leonardo/CLionProjects/DataStructuresInCpp/List/list.h
 iostream
@@ -27,6 +29,6 @@ zcmAlgorithm.h
 /home/leonardo/CLionProjects/DataStructuresInCpp/List/list.h
 
 /home/leonardo/CLionProjects/DataStructuresInCpp/main.cpp
-Heap/BinQueue.h
-/home/leonardo/CLionProjects/DataStructuresInCpp/Heap/BinQueue.h
+algorithm/zcmAlgorithm.h
+/home/leonardo/CLionProjects/DataStructuresInCpp/algorithm/zcmAlgorithm.h
 

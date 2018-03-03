@@ -9,6 +9,8 @@
 
 void Swap(int* a1,int* a2);
 
+void ArrayPrint(int A[], int N);
+
 bool isStringLegal(string str);
 
 List<int> intersect(List<int> &list1, List<int> &list2);
@@ -40,6 +42,8 @@ void Qsort(int A[], int left, int right);
 
 void Quicksort(int A[], int N);
 //桶排序
-/*assuming all Elements less than M*/
+/*assuming all Elements are less than M*/
 void BucketSort(int A[], int N, int M);
+
+void Test();
 #endif //DATASTRUCTURESINCPP_ZCMALGORITHM_H
