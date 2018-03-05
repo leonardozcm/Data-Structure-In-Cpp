@@ -7,7 +7,7 @@
 using namespace std;
 
 int main() {
-    Graph<int >::GraphNode graphNode(0, 1);
-    cout << graphNode.weight << endl;
+    Graph<int > graph;
+    cout<<graph.FindNewVertexOfIndegreeZero();
     return 0;
 }

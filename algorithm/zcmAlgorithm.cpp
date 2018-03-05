@@ -19,7 +19,7 @@ bool isStringLegal(string str) {
             stack.Push(*itstr);
         } else if (*itstr == '}') {
 
-            if (stack.Top() != '{') {
+            if (stack.Top()->t != '{') {
                 return false;
             } else {
                 stack.Pop();
@@ -27,7 +27,7 @@ bool isStringLegal(string str) {
 
         } else if (*itstr == ']') {
 
-            if (stack.Top() != '[') {
+            if (stack.Top()->t != '[') {
                 return false;
             } else {
                 stack.Pop();
@@ -35,7 +35,7 @@ bool isStringLegal(string str) {
 
         } else if (*itstr == '(') {
 
-            if (stack.Top() != ')') {
+            if (stack.Top()->t != ')') {
                 return false;
             } else {
                 stack.Pop();

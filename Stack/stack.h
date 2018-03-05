@@ -13,7 +13,7 @@ public:
         Node *next;
         T t;
 
-        Node(T myt) {
+        explicit Node(T myt) {
             t = myt;
             next = nullptr;
         }
@@ -29,11 +29,11 @@ public:
 
     void Push(T t);
 
-    T Top();
+    PtrToNode Top();
 
     void Pop();
 
-    T TopAndPop();
+    PtrToNode TopAndPop();
 
     int count();
 
@@ -65,7 +65,7 @@ void Stack<T>::MakeEmpty() {
 
 template<typename T>
 void Stack<T>::Push(T myt) {
-    Node *tmp = new Node(myt);
+    auto *tmp = new Node(myt);
     if (isEmpty()) {
         top = tmp;
         counts++;
@@ -76,14 +76,15 @@ void Stack<T>::Push(T myt) {
     }
 }
 
-template<typename T>
-T Stack<T>::Top() {
+/*template<typename T>
+ Stack<T>::Top() {
     if (isEmpty()) {
+        return nullptr;
     } else {
         return top->t;
     }
 
-}
+}*/
 
 template<typename T>
 void Stack<T>::Pop() {
@@ -98,12 +99,19 @@ void Stack<T>::Pop() {
 }
 
 template<typename T>
-T Stack<T>::TopAndPop() {
-    return nullptr;
+Stack<T>::Stack() { top = nullptr; }
+
+template<typename T>
+typename Stack<T>::PtrToNode Stack<T>::Top() {
+        return top;
 }
 
 template<typename T>
-Stack<T>::Stack() { top = nullptr; }
+typename Stack<T>::PtrToNode Stack<T>::TopAndPop() {
+    PtrToNode  ptrToNode=Top();
+    Pop();
+    return ptrToNode;
+}
 
 
 #endif //DATASTRUCTURESINCPP_STACK_H

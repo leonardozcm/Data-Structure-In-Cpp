@@ -22,7 +22,7 @@ public:
         T t;
         Node *next;
 
-        Node(T myt) {
+        explicit Node(T myt) {
             t = myt;
             next = nullptr;
         }
@@ -230,7 +230,7 @@ void List<T>::Print() {
 template<typename T>
 void List<T>::PrintLots(List<int> list) {
     /*
-    PtrToNode iterator = list.head;
+    PtrToGraphNode iterator = list.head;
     printf("[");
     while (iterator != nullptr) {
         if (iterator->next == nullptr) {
@@ -289,8 +289,8 @@ void List<T>::Clear() {
 template<typename T>
 List<T>& List<T>::operator=(List<T> obj) {
     Clear();
-    PtrToNode objtmp = obj.head;
-    PtrToNode dirtmp = head;
+    PtrToGraphNode objtmp = obj.head;
+    PtrToGraphNode dirtmp = head;
     if (objtmp->t != NULL)
         dirtmp->t = objtmp->t;
     while (objtmp != nullptr) {

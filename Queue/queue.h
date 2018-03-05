@@ -32,7 +32,7 @@ public:
 
     void enqueue(T t);
 
-    void dequeue() {
+    void destroy() {
         if (!isEmpty()) {
             Node *tmp = head;
             head = head->next;
@@ -42,6 +42,8 @@ public:
             }
         }
     }
+
+    T dequeue();
 
     T getHead();
 
@@ -107,6 +109,13 @@ Queue<T> &Queue<T>::operator=(Queue<T> obj) {
         objtmp = objtmp->next;
     }
     return *this;
+}
+
+template<typename T>
+T Queue<T>::dequeue() {
+    T t = getHead();
+    head = head->next;
+    return t;
 }
 
 #endif //DATASTRUCTURESINCPP_QUEUE_H
