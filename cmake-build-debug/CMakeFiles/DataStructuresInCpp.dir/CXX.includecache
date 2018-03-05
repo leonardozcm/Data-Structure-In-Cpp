@@ -12,9 +12,27 @@ DisjSet.h
 
 /home/leonardo/CLionProjects/DataStructuresInCpp/DisjSet/DisjSet.h
 
+/home/leonardo/CLionProjects/DataStructuresInCpp/Graph/Graph.h
+../List/list.h
+/home/leonardo/CLionProjects/DataStructuresInCpp/List/list.h
+../Queue/queue.h
+/home/leonardo/CLionProjects/DataStructuresInCpp/Queue/queue.h
+../HashMap/HashMap.h
+/home/leonardo/CLionProjects/DataStructuresInCpp/HashMap/HashMap.h
+hash_map
+-
+
+/home/leonardo/CLionProjects/DataStructuresInCpp/HashMap/HashMap.h
+cstring
+-
+../List/list.h
+/home/leonardo/CLionProjects/DataStructuresInCpp/List/list.h
+
 /home/leonardo/CLionProjects/DataStructuresInCpp/List/list.h
 iostream
 -
+
+/home/leonardo/CLionProjects/DataStructuresInCpp/Queue/queue.h
 
 /home/leonardo/CLionProjects/DataStructuresInCpp/Stack/stack.h
 
@@ -29,6 +47,8 @@ zcmAlgorithm.h
 /home/leonardo/CLionProjects/DataStructuresInCpp/List/list.h
 
 /home/leonardo/CLionProjects/DataStructuresInCpp/main.cpp
-algorithm/zcmAlgorithm.h
-/home/leonardo/CLionProjects/DataStructuresInCpp/algorithm/zcmAlgorithm.h
+Graph/Graph.h
+/home/leonardo/CLionProjects/DataStructuresInCpp/Graph/Graph.h
+iostream
+-
 

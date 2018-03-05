@@ -9,7 +9,9 @@ CMakeFiles/DataStructuresInCpp.dir/algorithm/zcmAlgorithm.cpp.o: ../Stack/stack.
 CMakeFiles/DataStructuresInCpp.dir/algorithm/zcmAlgorithm.cpp.o: ../algorithm/zcmAlgorithm.cpp
 CMakeFiles/DataStructuresInCpp.dir/algorithm/zcmAlgorithm.cpp.o: ../algorithm/zcmAlgorithm.h
 
+CMakeFiles/DataStructuresInCpp.dir/main.cpp.o: ../Graph/Graph.h
+CMakeFiles/DataStructuresInCpp.dir/main.cpp.o: ../HashMap/HashMap.h
 CMakeFiles/DataStructuresInCpp.dir/main.cpp.o: ../List/list.h
-CMakeFiles/DataStructuresInCpp.dir/main.cpp.o: ../algorithm/zcmAlgorithm.h
+CMakeFiles/DataStructuresInCpp.dir/main.cpp.o: ../Queue/queue.h
 CMakeFiles/DataStructuresInCpp.dir/main.cpp.o: ../main.cpp
 

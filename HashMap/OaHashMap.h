@@ -93,9 +93,9 @@ Index OaHashMap<T>::Hash(const char *Key) {
 
 template<typename T>
 OaHashMap<T>::OaHashMap() {
-    for (int i = 0; i < MaxIndex; ++i) {
+    for (auto &i : indexArray) {
         Elment elment;
-        indexArray[i] = elment;
+        i = elment;
     }
 }
 
