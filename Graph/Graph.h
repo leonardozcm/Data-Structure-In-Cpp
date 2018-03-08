@@ -72,14 +72,16 @@ void Graph<T>::Add(Vertex ver, list<pair<Vertex, double >> &link_list, T t) {
         add_list.add(graphNode);
     }
     vertex_vector[ver] = add_list;*/
-   auto itor=link_list.begin();
-    printf("%d",*itor);
-      for (auto itor : link_list) {
-          InDegree[itor.first]++;
-          GraphNode graphNode(itor.first, itor.second);
-          add_list.push_back(graphNode);
-      }
-      vertex_vector[ver] = add_list;
+
+    for (auto itor : link_list) {
+        InDegree[itor.first]++;
+        GraphNode graphNode(itor.first, itor.second);
+        add_list.push_back(graphNode);
+    }
+
+
+    vertex_vector[ver] = add_list;
+    auto itor = link_list.begin();
 }
 
 template<class T>
