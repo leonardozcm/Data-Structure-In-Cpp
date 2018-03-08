@@ -13,7 +13,7 @@ public:
         Node *next;
         T t;
 
-        explicit Node(T myt) {
+         Node(T myt) {
             t = myt;
             next = nullptr;
         }
@@ -88,12 +88,9 @@ void Stack<T>::Push(T myt) {
 
 template<typename T>
 void Stack<T>::Pop() {
-    PtrToNode firstcell;
 
     if (!isEmpty()) {
-        firstcell = top;
         top = top->next;
-        delete firstcell;
         counts--;
     }
 }

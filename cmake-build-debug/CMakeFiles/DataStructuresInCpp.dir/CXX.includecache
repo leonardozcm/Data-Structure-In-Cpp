@@ -13,15 +13,13 @@ DisjSet.h
 /home/leonardo/CLionProjects/DataStructuresInCpp/DisjSet/DisjSet.h
 
 /home/leonardo/CLionProjects/DataStructuresInCpp/Graph/Graph.h
-../List/list.h
-/home/leonardo/CLionProjects/DataStructuresInCpp/List/list.h
-../HashMap/HashMap.h
-/home/leonardo/CLionProjects/DataStructuresInCpp/HashMap/HashMap.h
-../Stack/stack.h
-/home/leonardo/CLionProjects/DataStructuresInCpp/Stack/stack.h
-
-/home/leonardo/CLionProjects/DataStructuresInCpp/HashMap/HashMap.h
-cstring
+stack
+-
+map
+-
+vector
+-
+cstdio
 -
 ../List/list.h
 /home/leonardo/CLionProjects/DataStructuresInCpp/List/list.h

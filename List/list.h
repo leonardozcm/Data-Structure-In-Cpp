@@ -69,11 +69,10 @@ public:
 
     void Clear();
 
-    //  List<T>& operator=(List<T> obj);
+      List<T>& operator=(List<T> obj);
 
     ~List() {
         Clear();
-        cout << "析构被调用" << endl;
     }
 
 private:
@@ -199,6 +198,8 @@ typename List<T>::Position List<T>::FindByPos(int pos) {
 
     if (pos < 0) {
         return nullptr;
+    } else if(pos==0){
+        return position;
     }
 
     while (position->next != nullptr && i++ != pos) {
@@ -285,10 +286,10 @@ void List<T>::Clear() {
     }
     length = 0;
 }
-/*
+
 template<typename T>
 List<T>& List<T>::operator=(List<T> obj) {
-    Clear();
+    /*Clear();
     PtrToGraphNode objtmp = obj.head;
     PtrToGraphNode dirtmp = head;
     if (objtmp->t != NULL)
@@ -296,9 +297,12 @@ List<T>& List<T>::operator=(List<T> obj) {
     while (objtmp != nullptr) {
         this->add(objtmp->t);
         objtmp = objtmp->next;
-    }
+    }*/
+    //Clear();
+    this->head->t=obj.FindByPos(0)->t;
+    this->head->next=obj.FindByPos(0)->next;
+    this->length=0;
     return *this;
 }
-*/
 
 #endif //DATASTRUCTURESINCPP_LIST_H

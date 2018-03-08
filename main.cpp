@@ -8,6 +8,8 @@ using namespace std;
 
 int main() {
     Graph<int > graph;
-    cout<<graph.FindNewVertexOfIndegreeZero();
+    List<pair<Vertex, double >> link_list;
+    link_list.add(pair<Vertex, double>(0,1));
+    graph.Add(1,link_list,214321);
     return 0;
 }
