@@ -47,7 +47,7 @@ public:
 
 
 private:
-    vector<list<GraphNode>> vertex_vector;
+    list<GraphNode> vertex_vector[MaxVertex];
     stack<Vertex> InDegreeZero;
     map<Vertex, T> keyMap;
     int InDegree[MaxVertex]{};
@@ -92,11 +92,10 @@ void Graph<T>::PutIntoStack() {
         }
     }
 }
-/*
+
 template<class T>
 void Graph<T>::TopSort() {
     Vertex v;
-    GraphNode *itor;
     PutIntoStack();
     int counter = 0;
     while (!InDegreeZero.empty()) {
@@ -104,15 +103,14 @@ void Graph<T>::TopSort() {
         v = InDegreeZero.top();
         InDegreeZero.pop();
         printf("%d -> ", v);
-        itor = vertex_vector[v].begin();
-        for (; itor != vertex_vector[v].end(); itor++) {
-            if (--InDegree[(*itor).v] == 0)
-                InDegreeZero.push((*itor).v);
+        for (auto itor:vertex_vector[v]) {
+            if (--InDegree[itor.v] == 0)
+                InDegreeZero.push(itor.v);
         }
     }
     if (counter != MaxVertex) {
         printf("Graph has a circle.\n");
     }
-}*/
+}
 
 #endif //DATASTRUCTURESINCPP_GRAPH_H
