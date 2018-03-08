@@ -21,8 +21,8 @@ vector
 -
 cstdio
 -
-../List/list.h
-/home/leonardo/CLionProjects/DataStructuresInCpp/List/list.h
+list
+-
 
 /home/leonardo/CLionProjects/DataStructuresInCpp/List/list.h
 iostream

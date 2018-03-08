@@ -69,7 +69,7 @@ public:
 
     void Clear();
 
-      List<T>& operator=(List<T> obj);
+    //  List<T>& operator=(List<T> obj);
 
     ~List() {
         Clear();
@@ -286,7 +286,7 @@ void List<T>::Clear() {
     }
     length = 0;
 }
-
+/*
 template<typename T>
 List<T>& List<T>::operator=(List<T> obj) {
     /*Clear();
@@ -299,10 +299,11 @@ List<T>& List<T>::operator=(List<T> obj) {
         objtmp = objtmp->next;
     }*/
     //Clear();
+/*
     this->head->t=obj.FindByPos(0)->t;
     this->head->next=obj.FindByPos(0)->next;
     this->length=0;
     return *this;
-}
+}*/
 
 #endif //DATASTRUCTURESINCPP_LIST_H

@@ -9,7 +9,7 @@
 #include <map>
 #include <vector>
 #include <cstdio>
-#include "../List/list.h"
+#include <list>
 
 using namespace std;
 #define MaxVertex 10
@@ -39,7 +39,7 @@ public:
 
     Graph();
 
-    void Add(Vertex ver, List<pair<Vertex, double >> &link_list, T t);
+    void Add(Vertex ver, list<pair<Vertex, double >> &link_list, T t);
 
     void PutIntoStack();
 
@@ -47,7 +47,7 @@ public:
 
 
 private:
-    vector<List<GraphNode>> vertex_vector;
+    vector<list<GraphNode>> vertex_vector;
     stack<Vertex> InDegreeZero;
     map<Vertex, T> keyMap;
     int InDegree[MaxVertex]{};
@@ -62,26 +62,24 @@ Graph<T>::Graph() {
 }
 
 template<class T>
-void Graph<T>::Add(Vertex ver, List<pair<Vertex, double >> &link_list, T t) {
+void Graph<T>::Add(Vertex ver, list<pair<Vertex, double >> &link_list, T t) {
     keyMap.insert(pair<Vertex, T>(ver, t));
-    List<GraphNode> add_list;
-    List<pair<Vertex, double >>::Node *tmp;
-/*
-    {
-        GraphNode graphNode(1,1);        add_list.push_back(graphNode);
-    }
-*/
-    for (tmp = link_list.FindByPos(0); tmp; tmp = tmp->next) {
+    list<GraphNode> add_list;
+    //list<pair<Vertex, double >>::Node *tmp;
+    /*for (tmp = link_list.FindByPos(0); tmp; tmp = tmp->next) {
         InDegree[tmp->t.first]++;
         GraphNode graphNode(tmp->t.first, tmp->t.second);
         add_list.add(graphNode);
     }
-    vertex_vector[ver] = add_list;
-    /*  typename list<Graph<T>::GraphNode>::iterator itor;
-      for (itor = link_list.begin(); itor != link_list.end(); itor++) {
-          InDegree[(*itor).v]++;
+    vertex_vector[ver] = add_list;*/
+   auto itor=link_list.begin();
+    printf("%d",*itor);
+      for (auto itor : link_list) {
+          InDegree[itor.first]++;
+          GraphNode graphNode(itor.first, itor.second);
+          add_list.push_back(graphNode);
       }
-      vertex_vector[ver] = link_list;*/
+      vertex_vector[ver] = add_list;
 }
 
 template<class T>
@@ -92,7 +90,7 @@ void Graph<T>::PutIntoStack() {
         }
     }
 }
-
+/*
 template<class T>
 void Graph<T>::TopSort() {
     Vertex v;
@@ -113,6 +111,6 @@ void Graph<T>::TopSort() {
     if (counter != MaxVertex) {
         printf("Graph has a circle.\n");
     }
-}
+}*/
 
 #endif //DATASTRUCTURESINCPP_GRAPH_H
