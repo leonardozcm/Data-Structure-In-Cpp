@@ -21,6 +21,8 @@ cstdio
 -
 list
 -
+queue
+-
 
 /home/leonardo/CLionProjects/DataStructuresInCpp/List/list.h
 iostream

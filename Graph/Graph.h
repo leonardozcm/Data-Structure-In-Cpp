@@ -9,10 +9,13 @@
 #include <map>
 #include <cstdio>
 #include <list>
+#include <queue>
 
 using namespace std;
 #define MaxVertex 5
-#define UnUsed -1
+#define UnUsed (-1)
+#define StartNodeHasNoHead (-1)
+#define Infinity 32500
 typedef int Vertex;
 
 
@@ -21,8 +24,8 @@ class Graph {
 public:
     class GraphNode {
     public:
-        Vertex v;
-        double weight;
+        Vertex v{};
+        double weight{};
 
         GraphNode() = default;
 
@@ -36,6 +39,18 @@ public:
         }
 
     };
+
+    class PathNode {
+    public:
+        Vertex Last;
+        double distance;
+
+        PathNode() = default;
+
+        PathNode(Vertex Last, double distance) : Last(Last), distance(distance) {}
+    };
+
+    typedef PathNode *PtrToPathNode;
 
     Graph();
 
@@ -54,6 +69,8 @@ public:
     Graph<T> &DoubleLink(Vertex startVertex, Vertex pointVertex) {
         return DoubleLink(startVertex, pointVertex, 1);
     };
+
+    double FindShortestWayUnweighted(Vertex startVertex, Vertex endVertex);
 
 private:
     int unusedVex = 0;
@@ -108,7 +125,7 @@ void Graph<T>::PutIntoStack() {
         if (!InDegree[i]) {
             InDegreeZero.push(i);
         }
-        if(InDegree[i]==UnUsed){ unusedVex++;}
+        if (InDegree[i] == UnUsed) { unusedVex++; }
     }
 }
 
@@ -122,7 +139,7 @@ void Graph<T>::TopSort() {
         counter++;
         v = InDegreeZero.top();
         InDegreeZero.pop();
-        if (counter == MaxVertex-unusedVex) {
+        if (counter == MaxVertex - unusedVex) {
             printf("%d \nThe way ends.", v);
         } else { printf("%d -> ", v); }
 
@@ -132,7 +149,7 @@ void Graph<T>::TopSort() {
         }
     }
 
-    if (counter != MaxVertex-unusedVex) {
+    if (counter != MaxVertex - unusedVex) {
         printf("Graph has a circle.\n");
     }
 }
@@ -170,5 +187,48 @@ Graph<T> &Graph<T>::DoubleLink(Vertex startVertex, Vertex pointVertex, double we
     InDegree[startVertex]++;
     return *this;
 }
+/**
+ *
+ * @tparam T
+ * @param startVertex
+ * @param endVertex
+ * @return 返回最短路径长并打印路径
+ */
+template<class T>
+double Graph<T>::FindShortestWayUnweighted(Vertex startVertex, Vertex endVertex) {
+    PathNode pathNode_list[MaxVertex];
+    for (auto &i : pathNode_list) {
+        i.Last = StartNodeHasNoHead;
+        i.distance = Infinity;
+    }
+
+    pathNode_list[startVertex].distance = 0;
+    queue<Vertex> vertex_queue;
+    vertex_queue.push(startVertex);
+    Vertex tmp;
+    while (!vertex_queue.empty()) {
+        tmp = vertex_queue.front();
+        vertex_queue.pop();
+        for (auto itor:vertex_vector[tmp]) {
+            if (pathNode_list[itor.v].distance == Infinity) {
+                pathNode_list[itor.v].distance = pathNode_list[tmp].distance + 1;
+                pathNode_list[itor.v].Last = tmp;
+                vertex_queue.push(itor.v);
+            }
+            if (itor.v == endVertex) {
+                auto Pathtmp=itor.v;
+                while (Pathtmp!=StartNodeHasNoHead){
+                    printf("%d <-",Pathtmp);
+                    Pathtmp=pathNode_list[Pathtmp].Last;
+                }
+                return pathNode_list[itor.v].distance;
+            }
+        }
+
+    }
+
+    return 0;
+}
+
 
 #endif //DATASTRUCTURESINCPP_GRAPH_H
