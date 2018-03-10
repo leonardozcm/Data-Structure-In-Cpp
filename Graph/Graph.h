@@ -7,12 +7,11 @@
 
 #include <stack>
 #include <map>
-#include <vector>
 #include <cstdio>
 #include <list>
 
 using namespace std;
-#define MaxVertex 10
+#define MaxVertex 5
 typedef int Vertex;
 
 
@@ -45,6 +44,13 @@ public:
 
     void TopSort();
 
+    void Link(Vertex startVertex, Vertex pointVertex, double weight);
+
+    void Link(Vertex startVertex, Vertex pointVertex);
+
+    void DoubleLink(Vertex startVertex, Vertex, double weight);
+
+    void DoubleLink(Vertex startVertex, Vertex pointVertex);
 
 private:
     list<GraphNode> vertex_vector[MaxVertex];
@@ -65,14 +71,6 @@ template<class T>
 void Graph<T>::Add(Vertex ver, list<pair<Vertex, double >> &link_list, T t) {
     keyMap.insert(pair<Vertex, T>(ver, t));
     list<GraphNode> add_list;
-    //list<pair<Vertex, double >>::Node *tmp;
-    /*for (tmp = link_list.FindByPos(0); tmp; tmp = tmp->next) {
-        InDegree[tmp->t.first]++;
-        GraphNode graphNode(tmp->t.first, tmp->t.second);
-        add_list.add(graphNode);
-    }
-    vertex_vector[ver] = add_list;*/
-
     for (auto itor : link_list) {
         InDegree[itor.first]++;
         GraphNode graphNode(itor.first, itor.second);
