@@ -10,12 +10,15 @@
 #include <cstdio>
 #include <list>
 #include <queue>
+#include "../Heap/Heap.h"
 
 using namespace std;
-#define MaxVertex 5
+
+#define MaxVertex 20
+
 #define UnUsed (-1)
 #define StartNodeHasNoHead (-1)
-#define Infinity 32500
+#define Infinity 32767
 typedef int Vertex;
 
 
@@ -42,12 +45,41 @@ public:
 
     class PathNode {
     public:
+        Vertex thisVertex;
         Vertex Last;
         double distance;
 
         PathNode() = default;
 
+        PathNode(Vertex thisVertex, Vertex Last, double distance) : thisVertex(thisVertex), Last(Last),
+                                                                    distance(distance) {}
+
         PathNode(Vertex Last, double distance) : Last(Last), distance(distance) {}
+
+        bool operator<(const PathNode &rhs) const {
+            return distance < rhs.distance;
+        }
+
+        bool operator>(const PathNode &rhs) const {
+            return rhs < *this;
+        }
+
+        bool operator<=(const PathNode &rhs) const {
+            return !(rhs < *this);
+        }
+
+        bool operator>=(const PathNode &rhs) const {
+            return !(*this < rhs);
+        }
+
+        bool operator==(const PathNode &rhs) const {
+            return distance == rhs.distance;
+        }
+
+        bool operator!=(const PathNode &rhs) const {
+            return !(rhs == *this);
+        }
+
     };
 
     typedef PathNode *PtrToPathNode;
@@ -72,12 +104,15 @@ public:
 
     double FindShortestWayUnweighted(Vertex startVertex, Vertex endVertex);
 
+    double Dijkstra(Vertex startVertex, Vertex endVertex);
+
 private:
     int unusedVex = 0;
 
+
     list<GraphNode> vertex_vector[MaxVertex];
-    stack<Vertex> InDegreeZero;
-    map<Vertex, T> keyMap;
+    stack<Vertex> InDegreeZero{};
+    map<Vertex, T> keyMap{};
     int InDegree[MaxVertex]{};
 
     void PutIntoStack();
@@ -89,12 +124,6 @@ private:
     }
 };
 
-template<class T>
-Graph<T>::Graph() {
-    for (auto &i : InDegree) {
-        i = UnUsed;
-    }
-}
 
 /**
  *
@@ -187,6 +216,7 @@ Graph<T> &Graph<T>::DoubleLink(Vertex startVertex, Vertex pointVertex, double we
     InDegree[startVertex]++;
     return *this;
 }
+
 /**
  *
  * @tparam T
@@ -216,10 +246,10 @@ double Graph<T>::FindShortestWayUnweighted(Vertex startVertex, Vertex endVertex)
                 vertex_queue.push(itor.v);
             }
             if (itor.v == endVertex) {
-                auto Pathtmp=itor.v;
-                while (Pathtmp!=StartNodeHasNoHead){
-                    printf("%d <-",Pathtmp);
-                    Pathtmp=pathNode_list[Pathtmp].Last;
+                auto Pathtmp = itor.v;
+                while (Pathtmp != StartNodeHasNoHead) {
+                    printf("%d <-", Pathtmp);
+                    Pathtmp = pathNode_list[Pathtmp].Last;
                 }
                 return pathNode_list[itor.v].distance;
             }
@@ -227,7 +257,57 @@ double Graph<T>::FindShortestWayUnweighted(Vertex startVertex, Vertex endVertex)
 
     }
 
-    return 0;
+    return -1;
+}
+
+template<class T>
+double Graph<T>::Dijkstra(Vertex startVertex, Vertex endVertex) {
+    PathNode pathNode_list[MaxVertex];
+    int num = 0;
+    for (auto &i : pathNode_list) {
+        i.thisVertex = num++;
+        i.Last = StartNodeHasNoHead;
+        i.distance = Infinity;
+    }
+
+    Heap<PathNode> distanceheap;
+    PathNode pathNode(startVertex, StartNodeHasNoHead, 0);
+    distanceheap.insert(pathNode);
+    pathNode_list[startVertex].distance = 0;
+    Vertex tmp, link_tmp;
+    tmp = startVertex;
+    while (!distanceheap.empty()) {
+
+        for (auto itor:vertex_vector[tmp]) {
+            if (pathNode_list[itor.v].distance == Infinity) {
+                pathNode_list[itor.v].distance = pathNode_list[tmp].distance + itor.weight;
+                pathNode_list[itor.v].Last = tmp;
+                distanceheap.insert(pathNode_list[itor.v]);
+            } else if (pathNode_list[itor.v].distance > pathNode_list[tmp].distance + itor.weight) {
+                pathNode_list[itor.v].distance = pathNode_list[tmp].distance + itor.weight;
+                pathNode_list[itor.v].Last = tmp;
+            }
+
+        }
+        tmp = distanceheap.findMin().thisVertex;
+        distanceheap.DeleteMin();
+
+
+    }
+    int Pathtmp = endVertex;
+    while (Pathtmp != StartNodeHasNoHead) {
+        printf("%d <-", Pathtmp);
+        Pathtmp = pathNode_list[Pathtmp].Last;
+    }
+
+    return pathNode_list[endVertex].distance;
+}
+
+template<class T>
+Graph<T>::Graph() {
+    for (auto &i : InDegree) {
+        i = UnUsed;
+    }
 }
 
 

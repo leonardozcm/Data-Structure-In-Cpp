@@ -8,7 +8,7 @@
 
 #include <iostream>
 
-#define MaxIndex 13
+#define MaxIndex 100
 
 using namespace std;
 
@@ -27,6 +27,8 @@ public:
     void print();
 
     bool IsFull();
+
+    bool empty();
 
 private:
     T heap[MaxIndex];
@@ -96,8 +98,13 @@ void Heap<T>::DeleteMin() {
 template<typename T>
 void Heap<T>::print() {
     for (int i = 0; i < size; ++i) {
-        cout << heap[i] << "," ;
+        cout << heap[i] << ",";
     }
+}
+
+template<typename T>
+bool Heap<T>::empty() {
+    return size == 0;
 }
 
 
